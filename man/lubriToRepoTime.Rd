@@ -2,37 +2,49 @@
 % Please edit documentation in R/lubriToRepoTime.R
 \name{lubriToRepoTime}
 \alias{lubriToRepoTime}
-\title{Transformación de un intervalo temporal en notación del repositorio a
-del paquete lubridate}
+\title{Transformation of interval-class objects into time intervals under 
+\emph{PPp...p} notation}
 \usage{
 lubriToRepoTime(lubriInterval)
 }
-\description{
-La notación de intervalos temporales del repositorio consiste en denotarlos
-por la cadena de caracteres PPp...p, donde
-\itemize{
- \item PP es de la forma
-         QQ,QR 	Quincenal
-         MM,MR 	Mensual
-         BB,BR 	Bimensual
-         TT,TR 	Trimestral
-         EE,ER 	Semestral
-         AA,AR 	Anual
-\item p...p es de la forma
-        p….p 	Valores 	Periodicidad
-        qmmaaaa  q=1,2;      mm=01,…,12; aaaa=año  Quincenal
-        mmaaaa   mm=01,…,12; aaaa=año              Mensual
-        baaaa    b=1,…,6;    aaaa=año 	          Bimensual
-        taaaa    t=1,…,4;    aaaa=año 	          Trimestral
-        saaaa 	s=1,2;      aaaa=año 	          Semestral
-        aaaa     aaaa=año 	                      Anual
+\arguments{
+\item{lubriInterval}{object of class interval from package lubridate}
 }
+\description{
+\code{lubriToRepoTime} transforms time intervals expressed as 
+objects of class interval from the lubridate package into the so-called repo 
+notation (see details)
+}
+\details{
+The repo notation of time intervals 
+amounts to denoting them by the string PPp...p, where
+\itemize{
+ \item PP is 
+     \tabular{ll}{
+         QQ,QR\tab Fortnight (\emph{Quincena} in Spanish)\cr
+         MM,MR\tab Month\cr
+         BB,BR\tab Bimonth\cr
+         TT,TR\tab Term\cr
+         EE,ER\tab Semester\cr
+         AA,AR\tab Year (\emph{A\~no} in Spanish)
+     }
+\item p...p is
+     \tabular{lll}{
+        p...p\tab Values\tab Periodicity\cr
+        qmmyyyy\tab q=1,2; mm=01,...,12; yyyy=year\tab Fortnight\cr
+        mmyyyy\tab mm=01,...,12; yyyy=year\tab Month\cr
+        byyyy\tab b=1,...,6; yyyy=year\tab Bimonth\cr
+        tyyyy\tab t=1,...,4; yyyy=year\tab Term\cr
+        syyyy\tab s=1,2; yyyy=year\tab Semester\cr
+        yyyy\tab yyyy=year\tab Year
+      }
+ }#' The span of years possibly covered by the repo notation has been internally 
+fixed between the years 1 a.d. and 3000 a.d.
 }
 \examples{
-lubriToRepoTime(RepoTimeTolubri('MM022014'))
-lubriToRepoTime(RepoTimeTolubri('QQ1032015'))
-
-include RepoTimeTolubri.R
+library(lubridate)
+lubriToRepoTime(interval('2015-04-01', '2015-04-30', tz = 'Europe/Madrid'))
+lubriToRepoTime(interval('2015-01-01', '2015-03-31', tz = 'Europe/Madrid'))
 
 }
 

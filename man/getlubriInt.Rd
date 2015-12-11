@@ -4,29 +4,24 @@
 \name{getlubriInt}
 \alias{getlubriInt}
 \alias{getlubriInt,RepoTimeInt-method}
-\title{Devuelve el slot lubriInt de un objeto de clase RepoTimeInt.}
+\title{Return the slot lubriInt}
 \usage{
 getlubriInt(object)
 
 \S4method{getlubriInt}{RepoTimeInt}(object)
 }
 \arguments{
-\item{object}{Objeto de clase \code{\linkS4class{RepoTimeInt}} del que se desea 
-extraer el slot Repo.}
+\item{object}{Object of class \linkS4class{RepoTimeInt}.}
 }
 \value{
-Una lista de objetos de clase \code{\link{lubridate::Interval}}.
+A named list of objects of class Interval from package lubridate.
 }
 \description{
-\code{getlubriInt} devuelve el slot \code{lubriInt} del input 
-\code{\linkS4class{RepoTimeInt}}.
-}
-\details{
-Esta función devuelve únicamente los datos del slot \code{lubriInt} del objeto 
-\code{RepoTimeInt} de entrada como un vector.
+\code{getlubriInt} returns the slot \code{lubriInt} of an object
+ of class \linkS4class{RepoTimeInt}.
 }
 \examples{
-getlubriInt(new(Class = 'RepoTimeInt', 'TT12015'))
+getlubriInt(newRepoTime('TT12015'))
 
 }
 

@@ -1,19 +1,14 @@
-#' Devuelve el slot Repo de un objeto de clase RepoTimeInt.
+#' @title Return the slot Repo
 #' 
-#' \code{getRepo} devuelve el slot \code{Repo} del input 
-#' \code{\linkS4class{RepoTimeInt}}.
+#' @description \code{getRepo} returns the slot \code{Repo} of an object of 
+#' class \linkS4class{RepoTimeInt}. 
 #' 
-#' Esta función devuelve únicamente los datos del slot \code{Repo} del objeto 
-#' \code{RepoTimeInt} de entrada como un vector. 
-#' 
-#' 
-#' @param object Objeto de clase \code{\linkS4class{RepoTimeInt}} del que se desea 
-#' extraer el slot Repo.
+#' @param object Object of class \code{\linkS4class{RepoTimeInt}}.
 #'
-#' @return Un vector de clase \code{\link{character}} de longitud 1.
+#' @return A character vector with the time intervals in the repo notation.
 #'  
 #' @examples
-#' getRepo(new(Class = 'RepoTimeInt', 'TT12015'))
+#' getRepo(newRepoTime('TT12015'))
 #' 
 #' @include RepoTimeInt-class.R
 #' 

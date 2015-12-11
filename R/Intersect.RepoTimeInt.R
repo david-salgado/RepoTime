@@ -1,16 +1,15 @@
-#' Método 'Intersect' para la clase RepoTimeInt.
+#' @title Method for S4 class \linkS4class{RepoTimeInt}
 #'
-#' \code{Intersect} da la intersección de dos objetos de clase \code{\linkS4class{RepoTimeInt}}
-#' y longitud 1 o de los elementos de un objeto de clase \code{\linkS4class{RepoTimeInt}}
-#' y longitud mayor o igual a 1.
+#' @description \code{Intersect} provides the intersection between two objects 
+#' of class \linkS4class{RepoTimeInt} and length 1 or of all elements of an 
+#' object of class \linkS4class{RepoTimeInt} and length greater than 1.
 #'
+#' @param x Object of class \linkS4class{RepoTimeInt}.
 #'
-#' @param x Objeto de clase \code{\linkS4class{RepoTimeInt}}.
+#' @param y Object of class \linkS4class{RepoTimeInt}.
 #'
-#' @param y Objeto de clase \code{\linkS4class{RepoTimeInt}}.
-#'
-#' @return Objeto de clase \code{\linkS4class{RepoTimeInt}} el resultado de hacer la
-#' intersección de los periodos de tiempo.
+#' @return Object of class \linkS4class{RepoTimeInt} resulting from intersecting
+#' the lubriInt slot(s) of the argument(s).
 #'
 #' @examples
 #' RepoPeriod1 <- newRepoTime('MM012015')
@@ -25,7 +24,7 @@ setGeneric("Intersect", function(x, y){standardGeneric("Intersect")})
 
 #' @rdname Intersect
 #'
-#' @include RepoTimeInt-class.R
+#' @include RepoTimeInt-class.R lubriToRepoTime.R newRepoTime.R
 #'
 #' @export
 setMethod(
@@ -33,31 +32,38 @@ setMethod(
   signature = c("RepoTimeInt"),
   definition = function(x, y){
 
-    if (missing(y) && length(x@Repo) == 1) return(x)
-    if (missing(y) && length(x@Repo) >= 2) {
+    if (missing(x = y) && length(x = x@Repo) == 1) return(value = x)
+    if (missing(x = y) && length(x = x@Repo) >= 2) {
 
-      output <- Reduce(intersect, x@lubriInt)
-      if(!is.na(output)){
-        output <- unlist(lubriToRepoTime(output))
-        output <- newRepoTime(output)
+      output <- Reduce(f = intersect, x = x@lubriInt)
+      if(!is.na(x = output)){
+        output <- unlist(x = lubriToRepoTime(lubriInterval = output))
+        output <- newRepoTime(Time = output)
       }
-      return(output)
+      return(value = output)
     }
 
-    if (class(y) == 'RepoTimeInt' && length(x@Repo) == 1 && length(y@Repo) == 1){
+    if (class(x = y) == 'RepoTimeInt' && 
+        length(x = x@Repo) == 1 && 
+        length(x = y@Repo) == 1){
 
-      output <- intersect(x@lubriInt[[1]], y@lubriInt[[1]])
-      if(!is.na(output)){
-        output <- unlist(lubriToRepoTime(output))
-        output <- newRepoTime(output)
+      output <- intersect(x = x@lubriInt[[1]], y = y@lubriInt[[1]])
+      if (length(x = output) == 0) {
+          output <- newRepoTime(Time = character(0))
+          return(value = output)        
+      }
+      if(!is.na(x = output)){
+        output <- unlist(x = lubriToRepoTime(lubriInterval = output))
+        output <- newRepoTime(Time = output)
       }
 
-      return(output)
+      return(value = output)
 
     }
 
-    stop('[Intersect RepoTimeInt] Los parámetros de la función Intersect deben ser (i)
-         bien un objeto de clase RepoTimeInt (ii) bien dos objetos de clase RepoTimeInt de longitud 1.')
+    stop('[RepoTimeInt::Intersect] Arguments of Intersect must be either (i) an
+          object of class RepoTimeInt or (ii) two objects of class RepoTimeInt 
+          and length 1.')
   }
 
 )

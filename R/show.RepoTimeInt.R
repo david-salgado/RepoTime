@@ -1,23 +1,19 @@
-#' Muestra un objeto de clase RepoTimeInt.
+#' @title Show an Object of class \linkS4class{RepoTimeInt}
 #' 
-#' \code{show.RepoTimeInt} muestra el slot \code{Repo} del input 
-#' \code{\linkS4class{RepoTimeInt}}.
+#' @description \code{show} displays only the slot \code{Repo} of its argument 
+#' of class \linkS4class{RepoTimeInt}.
 #' 
-#' Esta función muestra únicamente los datos del slot \code{Repo} del objeto 
-#' \code{RepoTimeInt} de entrada como un vector. 
-#' 
-#' Se trata en realidad del método \code{\linkS4class{show}} adaptado para la 
-#' clase \code{\linkS4class{RepoTimeInt}}.
-#' 
-#' @param object Objeto de clase \code{\linkS4class{RepoTimeInt}} que se desea 
-#' mostrar.
+#' @param object Object of class \linkS4class{RepoTimeInt}.
 #'
-#' @return Objeto de clase \code{\link{NULL}}.
-#'  
+#' @return Object of class \code{NULL}.
+#'
+#' @details It is indeed the method \code{show} adapted to class 
+#' \linkS4class{RepoTimeInt}.
+#'      
 #' @examples
-#' show(new(Class = 'RepoTimeInt', 'TT12015'))
+#' show(newRepoTime('TT12015'))
 #' 
-#' @include RepoTimeInt-class.R
+#' @include RepoTimeInt-class.R newRepoTime.R
 #' 
 #' @export
 setMethod(
@@ -25,9 +21,9 @@ setMethod(
     signature = c("RepoTimeInt"),
     function(object){
         
-        show(object@Repo)
+        show(object = object@Repo)
         
-        invisible(NULL)
+        return(value = invisible(x = NULL))
     }
 )
 

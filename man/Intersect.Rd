@@ -4,25 +4,25 @@
 \name{Intersect}
 \alias{Intersect}
 \alias{Intersect,RepoTimeInt-method}
-\title{Método 'Intersect' para la clase RepoTimeInt.}
+\title{Method for S4 class \linkS4class{RepoTimeInt}}
 \usage{
 Intersect(x, y)
 
 \S4method{Intersect}{RepoTimeInt}(x, y)
 }
 \arguments{
-\item{x}{Objeto de clase \code{\linkS4class{RepoTimeInt}}.}
+\item{x}{Object of class \linkS4class{RepoTimeInt}.}
 
-\item{y}{Objeto de clase \code{\linkS4class{RepoTimeInt}}.}
+\item{y}{Object of class \linkS4class{RepoTimeInt}.}
 }
 \value{
-Objeto de clase \code{\linkS4class{RepoTimeInt}} el resultado de hacer la
-intersección de los periodos de tiempo.
+Object of class \linkS4class{RepoTimeInt} resulting from intersecting
+the lubriInt slot(s) of the argument(s).
 }
 \description{
-\code{Intersect} da la intersección de dos objetos de clase \code{\linkS4class{RepoTimeInt}}
-y longitud 1 o de los elementos de un objeto de clase \code{\linkS4class{RepoTimeInt}}
-y longitud mayor o igual a 1.
+\code{Intersect} provides the intersection between two objects 
+of class \linkS4class{RepoTimeInt} and length 1 or of all elements of an 
+object of class \linkS4class{RepoTimeInt} and length greater than 1.
 }
 \examples{
 RepoPeriod1 <- newRepoTime('MM012015')

@@ -4,30 +4,38 @@
 \name{Union}
 \alias{Union}
 \alias{Union,RepoTimeInt-method}
-\title{Método 'Union' para la clase RepoTimeInt.}
+\title{Union of two objects of class \linkS4class{RepoTimeInt}}
 \usage{
 Union(x, y)
 
 \S4method{Union}{RepoTimeInt}(x, y)
 }
 \arguments{
-\item{x}{Objeto de clase \code{\linkS4class{RepoTimeInt}}.}
+\item{x}{Object of class \linkS4class{RepoTimeInt}.}
 
-\item{y}{Objeto de clase \code{\linkS4class{RepoTimeInt}}.}
+\item{y}{Object of class \linkS4class{RepoTimeInt}.}
 }
 \value{
-Objeto de clase \code{\linkS4class{RepoTimeInt}} el resultado de sumar
-los periodos de tiempo.
+Object of class \linkS4class{RepoTimeInt}.
 }
 \description{
-\code{Union} suma dos objetos de clase \code{\linkS4class{RepoTimeInt}} y longitud 1
-o los elementos de un objeto de clase \code{\linkS4class{RepoTimeInt}} y longitud
-mayor o igual a 1.
+\code{Union} takes two objects of class 
+\linkS4class{RepoTimeInt} and produces a new object of this class with the 
+slot lubriInt resulting from applying the set operation union to their 
+corresponding slots lubriInt.
+}
+\details{
+It is important to remind that \code{union} "fills in" the time gap
+between their time interval arguments, if ever. It includes intervening time
+intervals between the initial and final input time intervals.
 }
 \examples{
 RepoPeriod1 <- newRepoTime('TT12015')
 RepoPeriod2 <- newRepoTime('TT22015')
-Union(RepoPeriod1,RepoPeriod2)
+Union(RepoPeriod1, RepoPeriod2)
+
+Months <- newRepoTime(paste0('MM', 10:12, '2014'))
+Union(Months)
 
 }
 

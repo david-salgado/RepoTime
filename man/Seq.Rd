@@ -4,28 +4,32 @@
 \name{Seq}
 \alias{Seq}
 \alias{Seq,RepoTimeInt-method}
-\title{Método 'Seq' para la clase RepoTimeInt.}
+\title{Method for the S4 class \linkS4class{RepoTimeInt}}
 \usage{
 Seq(x, y)
 
 \S4method{Seq}{RepoTimeInt}(x, y)
 }
 \arguments{
-\item{x}{Objeto de clase \code{\linkS4class{RepoTimeInt}}.}
+\item{x}{Object of class \linkS4class{RepoTimeInt} with the initial time 
+interval.}
 
-\item{y}{Objeto de clase \code{\linkS4class{RepoTimeInt}}.}
+\item{y}{Object of class \linkS4class{RepoTimeInt} with the final time 
+interval.}
 }
 \value{
-Objeto de clase \code{\linkS4class{RepoTimeInt}} el resultado de sumar
-los periodos de tiempo.
+A list of objects of class \linkS4class{RepoTimeInt} ranging from
+the initial time interval until the final time interval.
 }
 \description{
-\code{Seq} genera una colección de objetos de clase \code{\linkS4class{RepoTimeInt}}
+\code{Seq} generates a list of objects of class 
+\linkS4class{RepoTimeInt} ranging from the initial and final time interval 
+arguments.
 }
 \examples{
 RepoPeriod1 <- newRepoTime('MM012015')
 RepoPeriod2 <- newRepoTime('MM022016')
-Seq(RepoPeriod1,RepoPeriod2)
+Seq(RepoPeriod1, RepoPeriod2)
  
 }
 

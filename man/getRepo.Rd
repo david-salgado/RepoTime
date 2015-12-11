@@ -4,29 +4,24 @@
 \name{getRepo}
 \alias{getRepo}
 \alias{getRepo,RepoTimeInt-method}
-\title{Devuelve el slot Repo de un objeto de clase RepoTimeInt.}
+\title{Return the slot Repo}
 \usage{
 getRepo(object)
 
 \S4method{getRepo}{RepoTimeInt}(object)
 }
 \arguments{
-\item{object}{Objeto de clase \code{\linkS4class{RepoTimeInt}} del que se desea 
-extraer el slot Repo.}
+\item{object}{Object of class \code{\linkS4class{RepoTimeInt}}.}
 }
 \value{
-Un vector de clase \code{\link{character}} de longitud 1.
+A character vector with the time intervals in the repo notation.
 }
 \description{
-\code{getRepo} devuelve el slot \code{Repo} del input 
-\code{\linkS4class{RepoTimeInt}}.
-}
-\details{
-Esta función devuelve únicamente los datos del slot \code{Repo} del objeto 
-\code{RepoTimeInt} de entrada como un vector.
+\code{getRepo} returns the slot \code{Repo} of an object of 
+class \linkS4class{RepoTimeInt}.
 }
 \examples{
-getRepo(new(Class = 'RepoTimeInt', 'TT12015'))
+getRepo(newRepoTime('TT12015'))
 
 }
 

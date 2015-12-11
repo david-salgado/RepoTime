@@ -3,38 +3,24 @@
 \docType{methods}
 \name{[,RepoTimeInt-method}
 \alias{[,RepoTimeInt-method}
-\title{Extrae partes de un objeto de clase RepoTimeInt.}
+\title{Extract parts of an object of class \linkS4class{RepoTimeInt}}
 \usage{
 \S4method{[}{RepoTimeInt}(x, i, j, ..., drop = TRUE)
 }
 \arguments{
-\item{x}{objeto de clase \linkS4class{RepoTimeInt} del que se van a extraer 
-los elementos.}
+\item{x}{Object of class \linkS4class{RepoTimeInt} from which to extract 
+parts.}
 
-\item{i, j, }{... índices correspondientes a los elementos a extraer. 
-Los índices son \code{vectores} de clase \code{numeric} o de clase 
-\code{character} o de clase \code{\link{missing}} o \code{\link{NULL}}. Los 
-valores \code{numeric} son forzados a \code{integer} mediante
-\code{\link{as.integer}} (y por tanto, truncados hacia cero). Los vectores de
- clase \code{character} corresponderán a los nombres de los objetos (o para 
- matrices/arrays, los dimnames).}
+\item{i, j, ...}{indices corresponding to the elements to extract.}
 
-\item{drop}{Incluido por coherencia.}
+\item{drop}{Included for coherence.}
 }
 \value{
-Objeto de clase \linkS4class{RepoTimeInt}, que consiste en un 
-subconjunto del objeto \code{RepoTimeInt} de entrada.
+Object of class \linkS4class{RepoTimeInt}.
 }
 \description{
-\code{[} extrae o reemplaza partes de un objeto de clase 
+\code{[} extracts parts of an object of class 
 \linkS4class{RepoTimeInt}.
-}
-\details{
-Se trata del método \code{[} para la clase \linkS4class{RepoTimeInt}. Este 
-método obtiene subconjuntos del objeto de clase \code{RepoTimeInt} 
-especificado como entrada en base a su slot \code{Repo}. Devuelve, por tanto,
- un objeto de la misma clase \code{RepoTimeInt} del que se extrae un 
- determinado subconjunto del slot \code{Repo}.
 }
 \examples{
 Ejemplo <- newRepoTime(paste0('MM', c('03', '04'), '2014'))

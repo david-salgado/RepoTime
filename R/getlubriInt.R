@@ -1,19 +1,14 @@
-#' Devuelve el slot lubriInt de un objeto de clase RepoTimeInt.
+#' @title Return the slot lubriInt
 #' 
-#' \code{getlubriInt} devuelve el slot \code{lubriInt} del input 
-#' \code{\linkS4class{RepoTimeInt}}.
+#' @description \code{getlubriInt} returns the slot \code{lubriInt} of an object
+#'  of class \linkS4class{RepoTimeInt}.
 #' 
-#' Esta función devuelve únicamente los datos del slot \code{lubriInt} del objeto 
-#' \code{RepoTimeInt} de entrada como un vector. 
-#' 
-#' 
-#' @param object Objeto de clase \code{\linkS4class{RepoTimeInt}} del que se desea 
-#' extraer el slot Repo.
+#' @param object Object of class \linkS4class{RepoTimeInt}.
 #'
-#' @return Una lista de objetos de clase \code{\link{lubridate::Interval}}.
+#' @return A named list of objects of class Interval from package lubridate.
 #'  
 #' @examples
-#' getlubriInt(new(Class = 'RepoTimeInt', 'TT12015'))
+#' getlubriInt(newRepoTime('TT12015'))
 #' 
 #' @include RepoTimeInt-class.R
 #' 
@@ -23,7 +18,6 @@ setGeneric("getlubriInt", function(object){standardGeneric("getlubriInt")})
 #' @rdname getlubriInt
 #' 
 #' @include RepoTimeInt-class.R
-#' 
 #' 
 #' @export
 setMethod(

@@ -2,54 +2,50 @@
 % Please edit documentation in R/RepoTimeTolubri.R
 \name{RepoTimeTolubri}
 \alias{RepoTimeTolubri}
-\title{Transformación de un intervalo temporal en notación del repositorio a 
-del paquete lubridate
- 
-La notación de intervalos temporales del repositorio consiste en denotarlos
-por la cadena de caracteres PPp...p, donde
-\itemize{
- \item PP es de la forma 
-         QQ,QR 	Quincenal
-         MM,MR 	Mensual
-         BB,BR 	Bimensual
-         TT,TR 	Trimestral
-         EE,ER 	Semestral
-         AA,AR 	Anual
-\item p...p es de la forma
-        p….p 	Valores 	Periodicidad
-        qmmaaaa  q=1,2;      mm=01,…,12; aaaa=año  Quincenal
-        mmaaaa   mm=01,…,12; aaaa=año              Mensual
-        baaaa    b=1,…,6;    aaaa=año 	          Bimensual
-        taaaa    t=1,…,4;    aaaa=año 	          Trimestral
-        saaaa 	s=1,2;      aaaa=año 	          Semestral
-        aaaa     aaaa=año 	                      Anual
-}}
+\title{Transformation of time intervals \emph{PPp...p} notation into an 
+interval-class object of the lubridate package}
 \usage{
-RepoTimeTolubri(RepoTime)
+RepoTimeTolubri(RepoTime, TimeZone = "Europe/Madrid")
+}
+\arguments{
+\item{RepoTime}{character vector with the time interval in repo notation (see 
+details).}
+
+\item{TimeZone}{Time zone component of a date-time as expected in function
+\code{tz} of the lubridate package.}
 }
 \description{
-Transformación de un intervalo temporal en notación del repositorio a 
-del paquete lubridate
- 
-La notación de intervalos temporales del repositorio consiste en denotarlos
-por la cadena de caracteres PPp...p, donde
-\itemize{
- \item PP es de la forma 
-         QQ,QR 	Quincenal
-         MM,MR 	Mensual
-         BB,BR 	Bimensual
-         TT,TR 	Trimestral
-         EE,ER 	Semestral
-         AA,AR 	Anual
-\item p...p es de la forma
-        p….p 	Valores 	Periodicidad
-        qmmaaaa  q=1,2;      mm=01,…,12; aaaa=año  Quincenal
-        mmaaaa   mm=01,…,12; aaaa=año              Mensual
-        baaaa    b=1,…,6;    aaaa=año 	          Bimensual
-        taaaa    t=1,…,4;    aaaa=año 	          Trimestral
-        saaaa 	s=1,2;      aaaa=año 	          Semestral
-        aaaa     aaaa=año 	                      Anual
+\code{RepoTimeTolubri} transforms time intervals expressed in 
+the so-called repo notation (see details) into an object of class 
+interval of the lubridate package. When the time interval is not recognized
+as a valid string, it returns the corresponding message.
 }
+\details{
+The repo notation of time intervals 
+amounts to denoting them by the string PPp...p, where
+\itemize{
+ \item PP is 
+     \tabular{ll}{
+         QQ,QR\tab Fortnight (\emph{Quincena} in Spanish)\cr
+         MM,MR\tab Month\cr
+         BB,BR\tab Bimonth\cr
+         TT,TR\tab Term\cr
+         EE,ER\tab Semester\cr
+         AA,AR\tab Year (\emph{A\~no} in Spanish)
+     }
+\item p...p is
+     \tabular{lll}{
+        p...p\tab Values\tab Periodicity\cr
+        qmmyyyy\tab q=1,2; mm=01,...,12; yyyy=year\tab Fortnight\cr
+        mmyyyy\tab mm=01,...,12; yyyy=year\tab Month\cr
+        byyyy\tab b=1,...,6; yyyy=year\tab Bimonth\cr
+        tyyyy\tab t=1,...,4; yyyy=year\tab Term\cr
+        syyyy\tab s=1,2; yyyy=year\tab Semester\cr
+        yyyy\tab yyyy=year\tab Year
+      }
+ }
+The span of years possibly covered by the repo notation has been internally 
+fixed between the years 0001 a.d. and 3000 a.d.
 }
 \examples{
 RepoTimeTolubri('MM022014')

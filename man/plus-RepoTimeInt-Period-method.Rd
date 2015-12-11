@@ -3,29 +3,29 @@
 \docType{methods}
 \name{+,RepoTimeInt,Period-method}
 \alias{+,RepoTimeInt,Period-method}
-\title{Método '+' para la clase RepoTimeInt.}
+\title{Method for the S4 class \linkS4class{RepoTimeInt}}
 \usage{
 \S4method{+}{RepoTimeInt,Period}(e1, e2)
 }
 \arguments{
-\item{e1}{Objeto de clase \code{\linkS4class{RepoTimeInt}}.}
+\item{e1}{Object of class \linkS4class{RepoTimeInt}.}
 
-\item{e2}{Objeto de clase \code{\linkS4class{lubridate::Period}}.}
+\item{e2}{Object of class \linkS4class{Period}.}
 }
 \value{
-Objeto de clase \code{\linkS4class{RepoTimeInt}} el resultado de sumar
-al período inicial el plazo temporal especificado.
+Object of class \linkS4class{RepoTimeInt} resulting from summing the
+time period \code{y} to the initial time interval \code{x}.
 }
 \description{
-\code{+} suma a un objeto de clase \code{\linkS4class{RepoTimeInt}} un objeto
-de clase \code{\linkS4class{lubridate::Period}} del paquete \code{lubridate}
-con el plazo temporal de duración especificada como input.
+\code{+} sums an object of class \linkS4class{Period} of package
+lubridate to an object of class \linkS4class{RepoTimeInt}.
 }
 \details{
-Este método sobrecarga el operador \link{+} y construye un nuevo objeto
-\code{RepoTimeInt}.
+This method overloads the operator \link{+} and builds an object of
+class \linkS4class{RepoTimeInt}.
 }
 \examples{
+library(lubridate)
 RepoPeriod <- newRepoTime('MM022015')
 RepoPeriod + months(1)
 RepoPeriod + years(1)

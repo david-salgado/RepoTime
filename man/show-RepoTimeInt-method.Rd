@@ -3,30 +3,26 @@
 \docType{methods}
 \name{show,RepoTimeInt-method}
 \alias{show,RepoTimeInt-method}
-\title{Muestra un objeto de clase RepoTimeInt.}
+\title{Show an Object of class \linkS4class{RepoTimeInt}}
 \usage{
 \S4method{show}{RepoTimeInt}(object)
 }
 \arguments{
-\item{object}{Objeto de clase \code{\linkS4class{RepoTimeInt}} que se desea 
-mostrar.}
+\item{object}{Object of class \linkS4class{RepoTimeInt}.}
 }
 \value{
-Objeto de clase \code{\link{NULL}}.
+Object of class \code{NULL}.
 }
 \description{
-\code{show.RepoTimeInt} muestra el slot \code{Repo} del input 
-\code{\linkS4class{RepoTimeInt}}.
+\code{show} displays only the slot \code{Repo} of its argument 
+of class \linkS4class{RepoTimeInt}.
 }
 \details{
-Esta función muestra únicamente los datos del slot \code{Repo} del objeto 
-\code{RepoTimeInt} de entrada como un vector.
-
-Se trata en realidad del método \code{\linkS4class{show}} adaptado para la 
-clase \code{\linkS4class{RepoTimeInt}}.
+It is indeed the method \code{show} adapted to class 
+\linkS4class{RepoTimeInt}.
 }
 \examples{
-show(new(Class = 'RepoTimeInt', 'TT12015'))
+show(newRepoTime('TT12015'))
 
 }
 
