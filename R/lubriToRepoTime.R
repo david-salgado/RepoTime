@@ -42,7 +42,7 @@
 #' @importFrom lubridate int_start days mday month year
 #'
 #' @export
-lubriToRepoTime <- function(lubriInterval){
+lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
 
     if (length(x = lubriInterval) == 1){
 
@@ -55,7 +55,7 @@ lubriToRepoTime <- function(lubriInterval){
 
         if (NDays <= 17) {
 
-            PP <- 'QQ'
+            PP <- ifelse(test = Rot, yes = 'QR', no ='QQ')
             MonthDay <- mday(x = IniTime)
             if (MonthDay <= 14) {
 
@@ -75,7 +75,7 @@ lubriToRepoTime <- function(lubriInterval){
 
         if (NDays > 17 & NDays <= 31){
 
-            PP <- 'MM'
+            PP <- ifelse(test = Rot, yes = 'MR', no = 'MM')
             Month <- month(IniTime)
             Month <- ifelse(test = (nchar(x = Month) == 1), 
                             yes = paste0('0', Month), 
@@ -88,7 +88,7 @@ lubriToRepoTime <- function(lubriInterval){
 
         if (NDays > 31 & NDays <= 62){
 
-            PP <- 'BB'
+            PP <- ifelse(test = Rot, yes = 'BR', no = 'BB')
             Month <- month(x = IniTime)
             if (Month %in% 1:2) BiM <- 1
             if (Month %in% 3:4) BiM <- 2
@@ -104,7 +104,7 @@ lubriToRepoTime <- function(lubriInterval){
 
         if (NDays > 62 & NDays <= 93){
 
-            PP <- 'TT'
+            PP <- ifelse(test = Rot, yes = 'TR', no = 'TT')
             Month <- month(x = IniTime)
             if (Month %in% 1:3) Term <- 1
             if (Month %in% 4:6) Term <- 2
@@ -118,7 +118,7 @@ lubriToRepoTime <- function(lubriInterval){
 
         if (NDays > 93 & NDays <= 186){
 
-            PP <- 'SS'
+            PP <- ifelse(test = Rot, yes = 'SR', no = 'SS')
             Month <- month(x = IniTime)
             if (Month %in% 1:6) Sem <- 1
             if (Month %in% 7:12) Sem <- 2
@@ -130,7 +130,7 @@ lubriToRepoTime <- function(lubriInterval){
 
         if (NDays > 186){
 
-            PP <- 'AA'
+            PP <- ifelse(test = Rot, yes = 'AR', no = 'AA')
             Year <- year(x = IniTime)
             RepoTime <- paste0(PP, Year)
             return(value = RepoTime)

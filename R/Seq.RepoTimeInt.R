@@ -23,7 +23,7 @@
 #' @importFrom lubridate duration as.interval
 #' 
 #' @export
-setGeneric("Seq", function(x, y){standardGeneric("Seq")})
+setGeneric("Seq", function(x, y, Rot = TRUE, RotPer = '12'){standardGeneric("Seq")})
 
 #' @rdname Seq
 #' 
@@ -34,63 +34,122 @@ setGeneric("Seq", function(x, y){standardGeneric("Seq")})
 setMethod(
   f = "Seq",
   signature = c("RepoTimeInt"),
-  definition = function(x, y){
+  definition = function(x, y, Rot = TRUE, RotPer = '12'){
     
     if (class(x = x) != 'RepoTimeInt' || 
         class(x = y) != 'RepoTimeInt' || 
         length(x = x@Repo) != 1 || 
         length(x = y@Repo) != 1){
-          stop('[RepoTimeInt::Seq] Arguments of Seq must be objects of class
-               RepoTimeInt and length 1.')
+          stop('[RepoTimeInt::Seq] Arguments x and y of Seq must be objects of 
+                class RepoTimeInt and length 1.')
     }
     
-    if (substr(x = x@Repo, start = 1, stop = 2) != 
-        substr(x = y@Repo, start = 1, stop = 2)) {
+    if (substr(x = x@Repo, start = 1, stop = 1) != 
+        substr(x = y@Repo, start = 1, stop = 1)) {
             stop('[RepoTimeInt::Seq] Arguments of Seq must be objects of class
-                 RepoTimeInt with the same time reference (AA, MM, QQ, etc)')
+                 RepoTimeInt with the same time reference (AA, MM, SS, ...)')
     }
       
-    if (substr(x = x@Repo, start = 1, stop = 2) %in% c('QQ', 'QR')){ 
+    if (substr(x = x@Repo, start = 1, stop = 1) == 'Q'){ 
         byParam <- '15 days'
+        prefix <- 'Q'
+        days <- 15
     }
-    if (substr(x = x@Repo, start = 1, stop = 2) %in% c('MM', 'MR')){ 
+    if (substr(x = x@Repo, start = 1, stop = 1) == 'M'){ 
         byParam <- '1 month'
+        prefix <- 'M'
+        days <- 30
     }
-    if (substr(x = x@Repo, start = 1, stop = 2) %in% c('BB', 'BR')){ 
+    if (substr(x = x@Repo, start = 1, stop = 1) == 'B'){ 
         byParam <- '2 month'
+        prefix <- 'B'
+        days <- 60
     }
-    if (substr(x = x@Repo, start = 1, stop = 2) %in% c('TT', 'TR')){ 
+    if (substr(x = x@Repo, start = 1, stop = 1) == 'T'){ 
         byParam <- '3 month'
+        prefix <- 'T'
+        days <- 91
     }
-    if (substr(x = x@Repo, start = 1, stop = 2) %in% c('EE', 'ER')){ 
+    if (substr(x = x@Repo, start = 1, stop = 1) == 'E'){ 
         byParam <- '6 month'
+        prefix <- 'E'
+        days <- 182
     }
-    if (substr(x = x@Repo, start = 1, stop = 2) %in% c('AA', 'AR')){ 
+    if (substr(x = x@Repo, start = 1, stop = 1) == 'A'){ 
         byParam <- '1 year'
+        prefix <- 'A'
+        days <- 365
     }
-    
+      
     startinterval <- seq(from = getlubriInt(x)[[1]]@start, 
                          to = getlubriInt(y)[[1]]@start, 
                          by = byParam)  
     
-    monthduration <- duration(days = 30)
+    PeriodDuration <- duration(days = days)
+
     seqInterval <- lapply(X = startinterval, 
-                          FUN = function(x) as.interval(x = monthduration,
+                          FUN = function(x) as.interval(x = PeriodDuration,
                                                         start = x))
-    output <- lapply(X = seqInterval, 
-                     FUN = function(x) lubriToRepoTime(lubriInterval = x))
-    output <- lapply(X = output, FUN = newRepoTime)
     
+    output <- unlist(lapply(X = seqInterval, 
+                     FUN = function(x) lubriToRepoTime(lubriInterval = x)))
+    if (Rot) {
+        
+        if (nchar(RotPer) == 1) {
+            Rot.index <- which(x = substr(x = output, 
+                                          start = 3, 
+                                          stop = 3) == RotPer)
+        }
+        
+        if (nchar(RotPer) == 2) {
+            Rot.index <- which(x = substr(x = output, 
+                                          start = 3, 
+                                          stop = 4) == RotPer)
+        }
+        if (nchar(RotPer) > 2) stop('[RepoTime::Seq] RotPer must be 1 or 2 
+                                    digits.')
+        Breaks <- unique(x = c(1, Rot.index, length(x = output)))
+        newoutput <- c()
+        ini.index <- 1
+        for (Break in Breaks[-1]){
+            Rot <- output[Break]
+            aux <- output[ini.index:Break]
+            newoutput <- c(newoutput, aux)
+            if (Break == Breaks[length(x = Breaks)]) {
+                
+                if (substr(x = getRepo(object = y), start = 2, stop = 2) == 'R'){
+                    
+                    newoutput <- c(newoutput, getRepo(object = y))
+                }
+                
+                break
+            }
+            newoutput <- c(newoutput, gsub(pattern = paste0(prefix, prefix), 
+                                           replacement = paste0(prefix, 'R'), 
+                                           x = Rot))
+            ini.index <- Break + 1
+        }
+            
+        if (substr(x = getRepo(object = x), start = 2, stop = 2) == 'R'){
+            
+            newoutput[1] <- getRepo(object = x)
+        }
+        output <- as.list(newoutput)
+        
+    }
+        output <- lapply(X = output, FUN = newRepoTime)
+
     aux <- unlist(x = lapply(X = output, FUN = getRepo))
     rot <- aux[substr(x = aux, start = 3 , stop = 4) == 12]
-    if (length(x = rot)>0) {rot <- gsub(pattern = 'MM', 
-                                        replacement = 'MR', 
-                                        x = rot)
-                        aux <- c(aux, rot)
-                        output <- lapply(X = aux, FUN = newRepoTime)
+    if (length(x = rot) > 0) {rot <- gsub(pattern = 'MM', 
+                                          replacement = 'MR', 
+                                          x = rot)
+                              aux <- c(aux, rot)
+                              output <- lapply(X = aux, 
+                                               FUN = newRepoTime)
     }
     
-    #names(output) <- unlist(lapply(output, getRepo))
+    names(output) <- unlist(x = lapply(X = output, FUN = getRepo))
     
     return(value = output)
   }

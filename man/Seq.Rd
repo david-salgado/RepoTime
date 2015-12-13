@@ -6,9 +6,9 @@
 \alias{Seq,RepoTimeInt-method}
 \title{Method for the S4 class \linkS4class{RepoTimeInt}}
 \usage{
-Seq(x, y)
+Seq(x, y, Rot = TRUE, RotPer = "12")
 
-\S4method{Seq}{RepoTimeInt}(x, y)
+\S4method{Seq}{RepoTimeInt}(x, y, Rot = TRUE, RotPer = "12")
 }
 \arguments{
 \item{x}{Object of class \linkS4class{RepoTimeInt} with the initial time 

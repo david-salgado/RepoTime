@@ -30,7 +30,7 @@ setGeneric("Union", function(x, y){standardGeneric("Union")})
 
 #' @rdname Union
 #'
-#' @include RepoTimeInt-class.R lubriToRepoTime.R newRepoTime.R
+#' @include RepoTimeInt-class.R lubriToRepoTime.R newRepoTime.R getlubriInt.R
 #'
 #' @importFrom lubridate union 
 #' 
@@ -40,11 +40,12 @@ setMethod(
   signature = c("RepoTimeInt"),
   definition = function(x, y){
 
-    if (missing(x = y) && length(x = x@Repo) == 1) return(invisible = x)
+    if (missing(x = y) && length(x = x@Repo) == 1) return(value = x)
     if (missing(x = y) && length(x = x@Repo) >= 2) {
 
-      output <- Reduce(f = union, x = x@lubriInt)
+      output <- Reduce(f = union, x = getlubriInt(object = x))
       output <- unlist(x = lubriToRepoTime(lubriInterval = output))
+return(output)
       output <- newRepoTime(Time = output)
       return(value = output)
     }

@@ -5,7 +5,7 @@
 \title{Transformation of interval-class objects into time intervals under 
 \emph{PPp...p} notation}
 \usage{
-lubriToRepoTime(lubriInterval)
+lubriToRepoTime(lubriInterval, Rot = FALSE)
 }
 \arguments{
 \item{lubriInterval}{object of class interval from package lubridate}

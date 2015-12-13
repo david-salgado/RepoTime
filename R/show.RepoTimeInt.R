@@ -13,7 +13,7 @@
 #' @examples
 #' show(newRepoTime('TT12015'))
 #' 
-#' @include RepoTimeInt-class.R newRepoTime.R
+#' @include RepoTimeInt-class.R getRepo.R
 #' 
 #' @export
 setMethod(
@@ -21,7 +21,7 @@ setMethod(
     signature = c("RepoTimeInt"),
     function(object){
         
-        show(object = object@Repo)
+        show(object = getRepo(object = object))
         
         return(value = invisible(x = NULL))
     }
