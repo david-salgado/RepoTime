@@ -95,18 +95,18 @@ setMethod(
                      FUN = function(x) lubriToRepoTime(lubriInterval = x)))
     if (Rot) {
         
-        if (nchar(RotPer) == 1) {
+        if (nchar(x = RotPer) == 1) {
             Rot.index <- which(x = substr(x = output, 
                                           start = 3, 
                                           stop = 3) == RotPer)
         }
         
-        if (nchar(RotPer) == 2) {
+        if (nchar(x = RotPer) == 2) {
             Rot.index <- which(x = substr(x = output, 
                                           start = 3, 
                                           stop = 4) == RotPer)
         }
-        if (nchar(RotPer) > 2) stop('[RepoTime::Seq] RotPer must be 1 or 2 
+        if (nchar(x = RotPer) > 2) stop('[RepoTime::Seq] RotPer must be 1 or 2 
                                     digits.')
         Breaks <- unique(x = c(1, Rot.index, length(x = output)))
         newoutput <- c()

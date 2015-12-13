@@ -54,8 +54,9 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
 
         if (substr(x = RepoTime, start = 1, stop = 2) %in% c('QQ', 'QR')) {
             
-            if (nchar(RepoTime) != 9) stop('[RepoTime:RepoTimeTolubri] The
+            if (nchar(x = RepoTime) != 9) stop('[RepoTime:RepoTimeTolubri] The
             number of characters for a QQ or QR repo time interval must be 9.')
+            
             FortNight <- substr(x = RepoTime, start = 3, stop = 3)
             if (!FortNight %in% c(1, 2)){
                 
@@ -97,9 +98,9 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         }  
         
         
-        if (substr(RepoTime, start = 1, stop = 2) %in% c('MM', 'MR')) {
+        if (substr(x = RepoTime, start = 1, stop = 2) %in% c('MM', 'MR')) {
             
-            if (nchar(RepoTime) != 8) stop('[RepoTime:RepoTimeTolubri] The
+            if (nchar(x = RepoTime) != 8) stop('[RepoTime:RepoTimeTolubri] The
             number of characters for a MM or MR repo time interval must be 7.')
             Month <- substr(x = RepoTime, start = 3, stop = 4)
             if(!Month %in% Months){
@@ -107,7 +108,7 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
                 cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
                 return(value = invisible(NULL))
             }
-            Year <- substr(RepoTime, start = 5, stop = 8)
+            Year <- substr(x = RepoTime, start = 5, stop = 8)
             if (!Year %in% Years){
                 
                 cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
@@ -122,17 +123,17 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
             return(value = output)
         }
         
-        if (substr(RepoTime, start = 1, stop = 2) %in% c('BB', 'BR')) {
+        if (substr(x = RepoTime, start = 1, stop = 2) %in% c('BB', 'BR')) {
             
             if (nchar(RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
             number of characters for a BB or BR repo time interval must be 7.')
-            BiMonth <- substr(RepoTime, start = 3, stop = 3)
+            BiMonth <- substr(x = RepoTime, start = 3, stop = 3)
             if (!BiMonth %in% 1:6){
                 
                 cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
                 return(value = invisible(NULL))
             }
-            Year <- substr(RepoTime, start = 4, stop = 7)
+            Year <- substr(x = RepoTime, start = 4, stop = 7)
             if (!Year %in% Years){
                 
                 cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
@@ -187,7 +188,7 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(x = RepoTime, start = 1, stop = 2) %in% c('TT', 'TR')) {
             
-            if (nchar(RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
+            if (nchar(x = RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
             number of characters for a TT or TR repo time interval must be 7.')
             Term <- substr(x = RepoTime, start = 3, stop = 3)
             if (!Term %in% 1:4){
@@ -231,7 +232,7 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(RepoTime, start = 1, stop = 2) %in% c('SS', 'SR')) {
             
-            if (nchar(RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
+            if (nchar(x = RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
             number of characters for a SS or SR repo time interval must be 7.')
             Sem <- substr(RepoTime, start = 3, stop = 3)
             if (!Sem %in% 1:2){
@@ -266,7 +267,7 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(RepoTime, start = 1, stop = 2) %in% c('AA', 'AR')) {
             
-            if (nchar(RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
+            if (nchar(x = RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
             number of characters for an AA or AR repo time interval must be 6.')
             Year <- substr(RepoTime, start = 3, stop = 6)
             
