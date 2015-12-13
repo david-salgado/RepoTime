@@ -62,7 +62,7 @@ setClass(Class = "RepoTimeInt",
             if (!all(
                 unlist(x = lapply(X = object@lubriInt, class)) == 'Interval')) 
                 stop('[RepoTime::validity RepoTimeInt] The slot lubriInt must be
-                     a list of objects of class lubridate::interval.')
+                     a list of objects of class lubridate::Interval.')
             RepoTolubri <- RepoTimeTolubri(RepoTime = object@Repo,
                                            TimeZone = tz(
                                                x = object@lubriInt[[1]]@start))

@@ -45,7 +45,7 @@ setMethod(
 
       output <- Reduce(f = union, x = getlubriInt(object = x))
       output <- unlist(x = lubriToRepoTime(lubriInterval = output))
-return(output)
+
       output <- newRepoTime(Time = output)
       return(value = output)
     }
