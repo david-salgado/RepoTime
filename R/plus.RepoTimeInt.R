@@ -1,7 +1,9 @@
-#' @title Method for the S4 class \linkS4class{RepoTimeInt}
+#' @title Sum of a \linkS4class{Period} class object to a 
+#' \linkS4class{RepoTimeInt} class object
 #'
-#' @description \code{+} sums an object of class \linkS4class{Period} of package
-#' lubridate to an object of class \linkS4class{RepoTimeInt}.
+#' @description \code{+} sums an object of class \linkS4class{Period} 
+#' of \link[lubridate]{lubridate-package} to an object of class 
+#' \linkS4class{RepoTimeInt}.
 #'
 #' @details This method overloads the operator \link{+} and builds an object of
 #' class \linkS4class{RepoTimeInt}.

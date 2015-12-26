@@ -3,7 +3,7 @@
 \docType{methods}
 \name{show,RepoTimeInt-method}
 \alias{show,RepoTimeInt-method}
-\title{Show an Object of class \linkS4class{RepoTimeInt}}
+\title{Show an object of class \linkS4class{RepoTimeInt}}
 \usage{
 \S4method{show}{RepoTimeInt}(object)
 }
@@ -18,7 +18,7 @@ Object of class \code{NULL}.
 of class \linkS4class{RepoTimeInt}.
 }
 \details{
-It is indeed the method \code{show} adapted to class 
+It is indeed the method \code{\link[methods]{show}} adapted to class 
 \linkS4class{RepoTimeInt}.
 }
 \examples{

@@ -1,5 +1,5 @@
 Package: RepoTime
-Title: Implementation of the time periods notation
+Title: Implementation of a notation for time intervals
 Version: 0.1
 Author: David Salgado
 Maintainer: David Salgado <david.salgado.fernandez@ine.es>
@@ -13,6 +13,7 @@ Imports:
 License: file LICENSE
 LazyData: true
 Collate:
+    'DocPackage.R'
     'RepoTimeTolubri.R'
     'RepoTimeInt-class.R'
     'newRepoTime.R'

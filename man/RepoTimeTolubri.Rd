@@ -2,54 +2,35 @@
 % Please edit documentation in R/RepoTimeTolubri.R
 \name{RepoTimeTolubri}
 \alias{RepoTimeTolubri}
-\title{Transformation of time intervals \emph{PPp...p} notation into an 
-interval-class object of the lubridate package}
+\title{Transformation of time intervals in repo notation into a list of
+\link[lubridate]{Interval-class} objects of the 
+\link[lubridate]{lubridate-package}}
 \usage{
 RepoTimeTolubri(RepoTime, TimeZone = "Europe/Madrid")
 }
 \arguments{
-\item{RepoTime}{character vector with the time interval in repo notation (see 
-details).}
+\item{RepoTime}{Character vector with the time interval in repo notation.}
 
 \item{TimeZone}{Time zone component of a date-time as expected in function
-\code{tz} of the lubridate package.}
+\code{\link[lubridate]{tz}} of the \link[lubridate]{lubridate-package} 
+(default value = 'Europe/Madrid').}
 }
 \description{
 \code{RepoTimeTolubri} transforms time intervals expressed in 
-the so-called repo notation (see details) into an object of class 
-interval of the lubridate package. When the time interval is not recognized
+the so-called repo notation (see details) into a list of 
+\link[lubridate]{Interval-class} objects of the 
+\link[lubridate]{lubridate-package}. When the time interval is not recognized
 as a valid string, it returns the corresponding message.
 }
 \details{
-The repo notation of time intervals 
-amounts to denoting them by the string PPp...p, where
-\itemize{
- \item PP is 
-     \tabular{ll}{
-         QQ,QR\tab Fortnight (\emph{Quincena} in Spanish)\cr
-         MM,MR\tab Month\cr
-         BB,BR\tab Bimonth\cr
-         TT,TR\tab Term\cr
-         EE,ER\tab Semester\cr
-         AA,AR\tab Year (\emph{A\~no} in Spanish)
-     }
-\item p...p is
-     \tabular{lll}{
-        p...p\tab Values\tab Periodicity\cr
-        qmmyyyy\tab q=1,2; mm=01,...,12; yyyy=year\tab Fortnight\cr
-        mmyyyy\tab mm=01,...,12; yyyy=year\tab Month\cr
-        byyyy\tab b=1,...,6; yyyy=year\tab Bimonth\cr
-        tyyyy\tab t=1,...,4; yyyy=year\tab Term\cr
-        syyyy\tab s=1,2; yyyy=year\tab Semester\cr
-        yyyy\tab yyyy=year\tab Year
-      }
- }
-The span of years possibly covered by the repo notation has been internally 
-fixed between the years 0001 a.d. and 3000 a.d.
+The repo notation of time intervals is explained in the details 
+section of \code{\link{RepoTimeInt-class}}.
 }
 \examples{
 RepoTimeTolubri('MM022014')
+\dontrun{
 RepoTimeTolubri('MM22014')
+}
 
 }
 

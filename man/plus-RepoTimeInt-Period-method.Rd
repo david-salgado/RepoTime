@@ -3,7 +3,8 @@
 \docType{methods}
 \name{+,RepoTimeInt,Period-method}
 \alias{+,RepoTimeInt,Period-method}
-\title{Method for the S4 class \linkS4class{RepoTimeInt}}
+\title{Sum of a \linkS4class{Period} class object to a 
+\linkS4class{RepoTimeInt} class object}
 \usage{
 \S4method{+}{RepoTimeInt,Period}(e1, e2)
 }
@@ -17,8 +18,9 @@ Object of class \linkS4class{RepoTimeInt} resulting from summing the
 time period \code{y} to the initial time interval \code{x}.
 }
 \description{
-\code{+} sums an object of class \linkS4class{Period} of package
-lubridate to an object of class \linkS4class{RepoTimeInt}.
+\code{+} sums an object of class \linkS4class{Period} 
+of \link[lubridate]{lubridate-package} to an object of class 
+\linkS4class{RepoTimeInt}.
 }
 \details{
 This method overloads the operator \link{+} and builds an object of

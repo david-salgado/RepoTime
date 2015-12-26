@@ -14,7 +14,8 @@ getlubriInt(object)
 \item{object}{Object of class \linkS4class{RepoTimeInt}.}
 }
 \value{
-A named list of objects of class Interval from package lubridate.
+A named list of objects of class \linkS4class{Interval} from 
+\link[lubridate]{lubridate-package}.
 }
 \description{
 \code{getlubriInt} returns the slot \code{lubriInt} of an object
@@ -23,5 +24,8 @@ A named list of objects of class Interval from package lubridate.
 \examples{
 getlubriInt(newRepoTime('TT12015'))
 
+}
+\seealso{
+\code{\linkS4class{RepoTimeInt}}, \code{\link{getRepo}}
 }
 

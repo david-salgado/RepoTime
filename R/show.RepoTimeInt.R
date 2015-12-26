@@ -1,4 +1,4 @@
-#' @title Show an Object of class \linkS4class{RepoTimeInt}
+#' @title Show an object of class \linkS4class{RepoTimeInt}
 #' 
 #' @description \code{show} displays only the slot \code{Repo} of its argument 
 #' of class \linkS4class{RepoTimeInt}.
@@ -7,7 +7,7 @@
 #'
 #' @return Object of class \code{NULL}.
 #'
-#' @details It is indeed the method \code{show} adapted to class 
+#' @details It is indeed the method \code{\link[methods]{show}} adapted to class 
 #' \linkS4class{RepoTimeInt}.
 #'      
 #' @examples

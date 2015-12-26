@@ -4,7 +4,7 @@
 \name{Seq}
 \alias{Seq}
 \alias{Seq,RepoTimeInt-method}
-\title{Method for the S4 class \linkS4class{RepoTimeInt}}
+\title{Seq method for the S4 class \linkS4class{RepoTimeInt}}
 \usage{
 Seq(x, y, Rot = TRUE, RotPer = "12")
 
@@ -16,6 +16,12 @@ interval.}
 
 \item{y}{Object of class \linkS4class{RepoTimeInt} with the final time 
 interval.}
+
+\item{Rot}{Logical vector of length 1 indicating whether periods with rotated
+samples are to be included in the sequence (default) or not.}
+
+\item{RotPer}{Character vector of length 1 with the numeric code of the time
+period containing both unrotated and rotated samples.}
 }
 \value{
 A list of objects of class \linkS4class{RepoTimeInt} ranging from

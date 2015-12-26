@@ -4,7 +4,7 @@
 \name{Intersect}
 \alias{Intersect}
 \alias{Intersect,RepoTimeInt-method}
-\title{Method for S4 class \linkS4class{RepoTimeInt}}
+\title{Intersect of two objects of class \linkS4class{RepoTimeInt}}
 \usage{
 Intersect(x, y)
 
@@ -17,17 +17,27 @@ Intersect(x, y)
 }
 \value{
 Object of class \linkS4class{RepoTimeInt} resulting from intersecting
-the lubriInt slot(s) of the argument(s).
+the slot(s) \code{lubriInt} of the argument(s).
 }
 \description{
 \code{Intersect} provides the intersection between two objects 
 of class \linkS4class{RepoTimeInt} and length 1 or of all elements of an 
 object of class \linkS4class{RepoTimeInt} and length greater than 1.
 }
+\details{
+If argument \code{y} is missing, \code{intersect} is applied 
+iteratively on every successive component of the list of 
+\code{\link[lubridate]{Interval-class}} objects. If argument \code{y} is 
+not missing, the length of both arguments must be 1.
+}
 \examples{
 RepoPeriod1 <- newRepoTime('MM012015')
 RepoPeriod2 <- newRepoTime('MM022015')
-Intersect(RepoPeriod1,RepoPeriod2)
+Intersect(RepoPeriod1, RepoPeriod2)
+
+RepoPeriod1 <- newRepoTime('MM012015')
+RepoPeriod2 <- newRepoTime('AA2015')
+Intersect(RepoPeriod1, RepoPeriod2)
 
 }
 

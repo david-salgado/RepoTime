@@ -1,3 +1,6 @@
+#' @name getRepo
+#' @aliases getRepo
+#' 
 #' @title Return the slot Repo
 #' 
 #' @description \code{getRepo} returns the slot \code{Repo} of an object of 
@@ -12,13 +15,14 @@
 #' 
 #' @include RepoTimeInt-class.R
 #' 
+#' @seealso \code{\link{RepoTimeInt-class}}, \code{\link{getlubriInt}}
+#' 
 #' @export
 setGeneric("getRepo", function(object){standardGeneric("getRepo")})
 
 #' @rdname getRepo
 #' 
 #' @include RepoTimeInt-class.R
-#' 
 #' 
 #' @export
 setMethod(

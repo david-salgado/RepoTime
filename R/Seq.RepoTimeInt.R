@@ -1,4 +1,7 @@
-#' @title Method for the S4 class \linkS4class{RepoTimeInt}
+#' @name Seq
+#' @aliases Seq
+#' 
+#' @title Seq method for the S4 class \linkS4class{RepoTimeInt}
 #' 
 #' @description \code{Seq} generates a list of objects of class 
 #' \linkS4class{RepoTimeInt} ranging from the initial and final time interval 
@@ -9,7 +12,13 @@
 #' 
 #' @param y Object of class \linkS4class{RepoTimeInt} with the final time 
 #' interval.
-#'  
+#' 
+#' @param Rot Logical vector of length 1 indicating whether periods with rotated
+#' samples are to be included in the sequence (default) or not.
+#' 
+#' @param RotPer Character vector of length 1 with the numeric code of the time
+#' period containing both unrotated and rotated samples.
+#' 
 #' @return A list of objects of class \linkS4class{RepoTimeInt} ranging from
 #' the initial time interval until the final time interval.
 #'  
@@ -28,7 +37,6 @@ setGeneric("Seq", function(x, y, Rot = TRUE, RotPer = '12'){standardGeneric("Seq
 #' @rdname Seq
 #' 
 #' @include RepoTimeInt-class.R
-#' 
 #' 
 #' @export
 setMethod(

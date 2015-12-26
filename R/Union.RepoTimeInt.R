@@ -1,9 +1,12 @@
+#' @name Union
+#' @aliases Union
+#' 
 #' @title Union of two objects of class \linkS4class{RepoTimeInt}
 #'
 #' @description \code{Union} takes two objects of class 
 #' \linkS4class{RepoTimeInt} and produces a new object of this class with the 
-#' slot lubriInt resulting from applying the set operation union to their 
-#' corresponding slots lubriInt.
+#' slot \code{lubriInt} resulting from applying the set operation 
+#' \link[base]{union} to their corresponding slots \code{lubriInt}.
 #'
 #' @param x Object of class \linkS4class{RepoTimeInt}.
 #'
@@ -11,8 +14,13 @@
 #'
 #' @return Object of class \linkS4class{RepoTimeInt}.
 #'
-#' @details It is important to remind that \code{union} "fills in" the time gap
-#' between their time interval arguments, if ever. It includes intervening time
+#' @details If argument \code{y} is missing, \code{union} is applied iteratively
+#' on every successive component of the list of 
+#' \code{\link[lubridate]{Interval-class}} objects. If argument \code{y} is 
+#' not missing, the length of both arguments must be 1. 
+#' 
+#' It is important to remind that \code{union} "fills in" the time gap between 
+#' their time interval arguments, if ever. It includes intervening time 
 #' intervals between the initial and final input time intervals.
 #'
 #' @examples
