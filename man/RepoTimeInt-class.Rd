@@ -26,7 +26,7 @@ denoting them by the string PPp...p, where
          MM,MR\tab Month\cr
          BB,BR\tab Bimonth\cr
          TT,TR\tab Term\cr
-         EE,ER\tab Semester\cr
+         SS,SR\tab Semester\cr
          AA,AR\tab Year (\emph{A\~no} in Spanish)
      }
  \emph{R} stands for those cases where the data set contains a rotated sample.
