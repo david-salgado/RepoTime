@@ -16,16 +16,21 @@ Collate:
     'DocPackage.R'
     'RepoTimeTolubri.R'
     'RepoTimeInt-class.R'
+    'getlubriInt.R'
     'newRepoTime.R'
     'lubriToRepoTime.R'
     'Intersect.RepoTimeInt.R'
-    'Seq.RepoTimeInt.R'
-    'getlubriInt.R'
-    'Union.RepoTimeInt.R'
     'getRepo.R'
+    'Length.R'
+    'Seq.RepoTimeInt.R'
+    'Union.RepoTimeInt.R'
     'plus.RepoTimeInt.R'
     'show.RepoTimeInt.R'
     'subset.RepoTimeInt.R'
 RoxygenNote: 5.0.1
 URL: https://github.com/david-salgado/RepoTime
 BugReports: https://github.com/david-salgado/RepoTime/issues
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
