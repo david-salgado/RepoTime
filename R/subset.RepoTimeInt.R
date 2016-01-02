@@ -25,7 +25,9 @@ setMethod(
   function(x, i, j, ..., drop = TRUE){
     
     mc <- match.call()
-    mc[['x']] <- getRepo(object = x)
+    newx <- getRepo(object = x)
+    names(newx) <- newx
+    mc[['x']] <- newx
     output <- eval(expr = mc, envir = parent.frame())
     output <- newRepoTime(Time = output)
     return(eval = output)

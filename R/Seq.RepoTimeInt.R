@@ -145,17 +145,7 @@ setMethod(
         output <- as.list(newoutput)
         
     }
-        output <- lapply(X = output, FUN = newRepoTime)
-
-    aux <- unlist(x = lapply(X = output, FUN = getRepo))
-    rot <- aux[substr(x = aux, start = 3 , stop = 4) == 12]
-    if (length(x = rot) > 0) {rot <- gsub(pattern = 'MM', 
-                                          replacement = 'MR', 
-                                          x = rot)
-                              aux <- c(aux, rot)
-                              output <- lapply(X = aux, 
-                                               FUN = newRepoTime)
-    }
+    output <- lapply(X = output, FUN = newRepoTime)
     
     names(output) <- unlist(x = lapply(X = output, FUN = getRepo))
     

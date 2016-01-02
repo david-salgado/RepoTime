@@ -31,6 +31,7 @@
 #' @export
 RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
     
+    names(RepoTime) <- NULL
     Months <- c(paste0('0', 1:9), 10:12)
     Years <- 1:3000
     

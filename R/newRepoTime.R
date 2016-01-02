@@ -24,6 +24,7 @@
 #' @export
 newRepoTime <- function(Time){
     
+    names(Time) <- NULL
     lubriInt <- RepoTimeTolubri(RepoTime = Time)
     output <- new(Class = 'RepoTimeInt', Repo = Time, lubriInt = lubriInt)
     return(value = output)
