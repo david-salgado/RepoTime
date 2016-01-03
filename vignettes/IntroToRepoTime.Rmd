@@ -65,9 +65,9 @@ To implement this notation we have defined a class named `RepoTimeInt` with two 
 * `Repo`: a character vector with intervals expressed in the above notation.
 * `lubriInt`: a list of object of class `Interval` from the package lubridate.
 
-The attribute `Repo` contains the specification of several time intervals in the former notation whereas the attribute `lubriInt` expresses this same set of time intervals using the class `Interval` from the package lubridate.
+The attribute `Repo` contains the specification of several time intervals in the former notation whereas the attribute `lubriInt` expresses this same set of time intervals using the class `Interval` from the package [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html).
 
-The general idea of the package is to express time intervals with the agreed notation but to work internally with the functions already defined for `Interval`-class methods. 
+The general idea of the package is to express time intervals with the agreed notation but to work internally with the functions already defined for `Interval`-class methods from the package [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html). 
 
 To build an object of class `RepoTimeInt` we have defined a constructor:
 
@@ -82,7 +82,7 @@ Internally this constructor makes use of the function `RepoTimeTolubri`:
 RepoTimeTolubri('MM012015')
 ```
 
-This function has an inverse function:
+This has an inverse function:
 
 ```{r}
 lapply(RepoTimeTolubri(c('MM012015', 'AA2016')), lubriToRepoTime)
