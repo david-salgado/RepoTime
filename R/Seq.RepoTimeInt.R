@@ -93,7 +93,7 @@ setMethod(
                          to = getlubriInt(y)[[1]]@start, 
                          by = byParam)  
     
-    PeriodDuration <- duration(days = days)
+    PeriodDuration <- duration(num = days, units = "days")
 
     seqInterval <- lapply(X = startinterval, 
                           FUN = function(x) as.interval(x = PeriodDuration,
