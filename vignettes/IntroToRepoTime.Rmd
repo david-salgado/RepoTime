@@ -42,19 +42,19 @@ Now each time interval is denoted with the following notation:
 
 **Interval** | **Initials** | **Notation**
 -------------|--------------|-----------------------------------------------------------
-Fortnight    | QQ, QR       | *qmmyyyy*, *q*=1,2; *mm*= 01, ..., 12; *yyyy*= 4-digit year 
-Month        | MM, MR       | *mmyyyy*, *mm* = 01, ..., 12; *yyyy* = 4-digit year
-Bimonth      | BB, BR       | *byyyy*, *b* = 1, ..., 6; *yyyy* = 4-digit year
-Term         | TT, TR       | *tyyyy*, *t* = 1, ..., 4; *yyyy* = 4-digit year
-Semester     | SS, SR       | *syyyy*, *s* = 1, 2; *yyyy* = 4-digit year
-Year         | AA, AR       | *yyyy* = 4-digit year
+Fortnight    | QQ, QR       | *qmmaaaa*, *q*=1,2; *mm*= 01, ..., 12; *aaaa*= 4-digit year 
+Month        | MM, MR       | *mmaaaa*, *mm* = 01, ..., 12; *aaaa* = 4-digit year
+Bimonth      | BB, BR       | *baaaa*, *b* = 1, ..., 6; *aaaa* = 4-digit year
+Term         | TT, TR       | *taaaa*, *t* = 1, ..., 4; *aaaa* = 4-digit year
+Semester     | SS, SR       | *saaaa*, *s* = 1, 2; *aaaa* = 4-digit year
+Year         | AA, AR       | *aaaa* = 4-digit year
 
 A few examples:
 
 * QQ1032015: first half of March, 2015.
 * MM101999: October, 1999.
 * BR22000: March and April, 2000 with a rotated sample with respect to January and February, 2000.
-* TR32014: Third term (July, August, September), 2014.
+* TR32014: Third term (July, August, September), 2014 with a rotated sample with respect to the second term.
 * SR11992: First semester (Januey to June), 1992 with a rotated sample with respect to the second semester of 1991.
 * AA2002: Year 2002.
 
@@ -63,7 +63,7 @@ A few examples:
 To implement this notation we have defined a class named `RepoTimeInt` with two attributes:
 
 * `Repo`: a character vector with intervals expressed in the above notation.
-* `lubriInt`: a list of object of class `Interval` from the package lubridate.
+* `lubriInt`: a list of object of class `Interval` from the package [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html).
 
 The attribute `Repo` contains the specification of several time intervals in the former notation whereas the attribute `lubriInt` expresses this same set of time intervals using the class `Interval` from the package [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html).
 
@@ -88,7 +88,7 @@ This has an inverse function:
 lapply(RepoTimeTolubri(c('MM012015', 'AA2016')), lubriToRepoTime)
 ```
 
-Los atributos pueden recuperarse con los respectivos *getters*:
+Both attributes can be recoverd with the respective *getters*:
 
 ```{r}
 getRepo(Months2015)
@@ -128,7 +128,7 @@ We can also create a sequence of time intervals as a list of objects of class `R
 Seq(newRepoTime('MM112015'), newRepoTime('MM032016'))
 ```
 
-This method allows us also to take into account whether to include or not data sets with rotated samples and/or to indicate which time interval contains the rotated sample:
+This method allows us also to take into account whether to include or not data sets with rotated samples and/or to indicate which time interval contains a second dataset with the rotated sample:
 
 ```{r}
 Seq(newRepoTime('MM112015'), newRepoTime('MM032016'), Rot = FALSE)

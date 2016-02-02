@@ -19,6 +19,9 @@
 #' x
 #' str(x) 
 #'
+#' # It works even with lists instead of vector
+#' newRepoTime(list('AA2015', 'TT12012'))
+#'
 #' @include RepoTimeInt-class.R RepoTimeTolubri.R
 #' 
 #' @export
@@ -26,7 +29,7 @@ newRepoTime <- function(Time){
     
     names(Time) <- NULL
     lubriInt <- RepoTimeTolubri(RepoTime = Time)
-    output <- new(Class = 'RepoTimeInt', Repo = Time, lubriInt = lubriInt)
+    output <- new(Class = 'RepoTimeInt', Repo = as.character(Time), lubriInt = lubriInt)
     return(value = output)
     
 }

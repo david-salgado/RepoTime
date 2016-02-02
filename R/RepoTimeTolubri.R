@@ -28,38 +28,64 @@
 #' 
 #' @importFrom lubridate tz ymd years weeks days interval
 #' 
+#' @importFrom stringr str_pad
+#' 
 #' @export
 RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
     
     names(RepoTime) <- NULL
     Months <- c(paste0('0', 1:9), 10:12)
-    Years <- 1:3000
+    Years <- str_pad(1:9999, 4, 'left', '0')
     
+    if (length(x = RepoTime) == 0) {
+        
+        stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                    RepoTime, 
+                    ': Zero-length repo time intervals are not valid.\n'), 
+             call. = FALSE)
+    }
     if (length(x = RepoTime) == 1) {
-
+        
+        if (nchar(x = RepoTime) < 6) {
+            
+            stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                        RepoTime, 
+                        ': The number of characters for a valid repo time interval must be at least 6. Check syntax PPp...p or PRp...p.\n'), 
+                 call. = FALSE)
+        }
         if (substr(x = RepoTime, start = 1, stop = 2) %in% c('QQ', 'QR')) {
             
-            if (nchar(x = RepoTime) != 9) stop('[RepoTime:RepoTimeTolubri] The
-            number of characters for a QQ or QR repo time interval must be 9.')
-            
+            if (nchar(x = RepoTime) != 9) {
+                
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': The number of characters for a QQ or QR repo time interval must be 9. Check syntax QQqmmaaaa or QRqmmaaaa.\n'), 
+                     call. = FALSE)
+            }
             FortNight <- substr(x = RepoTime, start = 3, stop = 3)
             if (!FortNight %in% c(1, 2)){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': Time interval not valid. Chech syntax QQqmmaaaa or QRqmmaaaa.\n'), 
+                     call. = FALSE)
             }
             Month <- substr(x = RepoTime, start = 4, stop = 5)
             if(!Month %in% Months){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': Time interval not valid. Chech syntax QQqmmaaaa or QRqmmaaaa.\n'), 
+                     call. = FALSE)
             }
             
             Year <- substr(x = RepoTime, start = 6, stop = 9)
             if (!Year %in% Years){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': Time interval not valid. Chech syntax QQqmmaaaa or QRqmmaaaa.\n'), 
+                     call. = FALSE)
             }
             if (FortNight == '1' ) {
                 St_Instant <- ymd(paste0(Year, '-', Month, '-01'), 
@@ -85,19 +111,28 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(x = RepoTime, start = 1, stop = 2) %in% c('MM', 'MR')) {
             
-            if (nchar(x = RepoTime) != 8) stop('[RepoTime:RepoTimeTolubri] The
-            number of characters for a MM or MR repo time interval must be 7.')
+            if (nchar(x = RepoTime) != 8) {
+                
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': The number of characters for an MM or MR repo time interval must be 7. Check syntax MMmmaaaa or MRmmaaaa.\n'), 
+                     call. = FALSE)
+            }
             Month <- substr(x = RepoTime, start = 3, stop = 4)
             if(!Month %in% Months){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime,
+                            ': Time interval not valid. Chech syntax MMmmaaaa or MRmmaaaa.\n'), 
+                     call. = FALSE)
             }
             Year <- substr(x = RepoTime, start = 5, stop = 8)
             if (!Year %in% Years){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime,
+                            ': Time interval not valid. Chech syntax MMmmaaaa or MRmmaaaa.\n'), 
+                     call. = FALSE)
             }
             St_Instant <- ymd(paste0(Year, '-', Month, '-01'), tz = TimeZone)
             End_Instant <- St_Instant + months(1, abbreviate = FALSE) - days(1)
@@ -110,19 +145,28 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(x = RepoTime, start = 1, stop = 2) %in% c('BB', 'BR')) {
             
-            if (nchar(RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
-            number of characters for a BB or BR repo time interval must be 7.')
+            if (nchar(RepoTime) != 7) {
+                
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': The number of characters for a BB or BR repo time interval must be 7. Check syntax BBbaaaaa or BRbaaaa.\n'), 
+                     call. = FALSE)
+            }
             BiMonth <- substr(x = RepoTime, start = 3, stop = 3)
             if (!BiMonth %in% 1:6){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': Time interval not valid. Chech syntax BBbaaaa or BRbaaaa.\n'), 
+                     call. = FALSE)
             }
             Year <- substr(x = RepoTime, start = 4, stop = 7)
             if (!Year %in% Years){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': Time interval not valid. Chech syntax BBbaaaa or BRbaaaa.\n'), 
+                     call. = FALSE)
             }
             if (BiMonth == '1' ) {
                 St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
@@ -173,15 +217,29 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(x = RepoTime, start = 1, stop = 2) %in% c('TT', 'TR')) {
             
-            if (nchar(x = RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
-            number of characters for a TT or TR repo time interval must be 7.')
+            if (nchar(x = RepoTime) != 7) {
+                
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': The number of characters for a TT or TR repo time interval must be 7. Check syntax TTtaaaa or TRtaaaa.\n'), 
+                     call. = FALSE)
+            }
             Term <- substr(x = RepoTime, start = 3, stop = 3)
             if (!Term %in% 1:4){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': Time interval not valid. Chech syntax TTtaaaa or TRtaaaa.\n'), 
+                     call. = FALSE)
             }
             Year <- substr(x = RepoTime, start = 4, stop = 7)
+            if (!Year %in% Years){
+                
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime,
+                            ': Time interval not valid. Chech syntax TTtaaaa or TRtaaaa.\n'),
+                     call. = FALSE)
+            }
             if (Term == '1' ) {
                 St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
                 End_Instant <- St_Instant + months(x = 3, abbreviate = FALSE)
@@ -217,19 +275,27 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(RepoTime, start = 1, stop = 2) %in% c('SS', 'SR')) {
             
-            if (nchar(x = RepoTime) != 7) stop('[RepoTime:RepoTimeTolubri] The
-            number of characters for a SS or SR repo time interval must be 7.')
+            if (nchar(x = RepoTime) != 7) {
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime, 
+                            ': The number of characters for an SS or SR repo time interval must be 7. Check syntax SSsaaaa or SRsaaaa.\n'), 
+                     call. = FALSE)
+            }
             Sem <- substr(RepoTime, start = 3, stop = 3)
             if (!Sem %in% 1:2){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime,
+                            ': Time interval not valid. Chech syntax SSsaaaa or SRsaaaa.\n'), 
+                     call. = FALSE)
             }
             Year <- substr(RepoTime, start = 4, stop = 7)
             if (!Year %in% Years){
                 
-                cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-                return(value = invisible(NULL))
+                stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                            RepoTime,
+                            ': Time interval not valid. Chech syntax SSsaaaa or SRsaaaa.\n'), 
+                     call. = FALSE)
             }
             if (Sem == '1' ) {
                 St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
@@ -252,10 +318,21 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
         
         if (substr(RepoTime, start = 1, stop = 2) %in% c('AA', 'AR')) {
             
-            if (nchar(x = RepoTime) != 6) stop('[RepoTime:RepoTimeTolubri] The
-            number of characters for an AA or AR repo time interval must be 6.')
+            if (nchar(x = RepoTime) != 6) {
+                
+                stop(paste0('[RepoTime::RepoTimeTolubri] ',
+                            RepoTime,
+                            ': The number of characters for an AA or AR repo time interval must be 6. Check syntax AAaaaa or ARaaaa.\n'),
+                     call. = FALSE)
+            }
             Year <- substr(RepoTime, start = 3, stop = 6)
-            
+            if (!Year %in% Years){
+                
+                stop(paste0('[RepoTime::RepoTimeTolubri] ',
+                            RepoTime,
+                            ': Time interval not valid. Chech syntax AAaaaa or ARaaaa.\n'), 
+                     call. = FALSE)
+            }
             St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
             End_Instant <- St_Instant + years(1) - days(1)
             
@@ -264,8 +341,11 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
             names(x = output) <- RepoTime
             return(value = output)
         }
-        cat('[RepoTime::RepoTimeTolubri] Time interval not valid.\n\n')
-        return(value = invisible(NULL))
+        
+        stop(paste0('[RepoTime::RepoTimeTolubri] ', 
+                    RepoTime, 
+                    ': Two initial characters of input time interval not valid. Check uppercase.\n'), 
+             call. = FALSE)
         
     } else {
          

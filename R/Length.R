@@ -15,7 +15,8 @@
 #' Length(RepoPeriod1)
 #' 
 #' RepoPeriod2 <- newRepoTime(c('MM012015', 'MM022015'))
-#' Length(RepoPeriod2) 
+#' Length(RepoPeriod2)
+#' 
 #'  
 #' @include RepoTimeInt-class.R getRepo.R
 #' 
