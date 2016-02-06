@@ -26,21 +26,128 @@
 #'
 #' @seealso \code{\link{RepoTimeTolubri}}
 #'
-#' @importFrom lubridate int_start days mday month year
+#' @importFrom lubridate int_start int_end days mday month year leap_year
 #'
 #' @export
 lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
 
     if (length(x = lubriInterval) == 1){
 
-        if (class(x = lubriInterval) != 'Interval') 
-            stop('[RepoTime::lubriToRepoTime] Argument is not an inteval-class 
-                 object from package lubridate.')
-
+        if (class(x = lubriInterval) != 'Interval') {
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': Argument is not an inteval-class object from package lubridate.'),
+                 call. = FALSE)
+        
+        }
         IniTime <- int_start(int = lubriInterval)
+        if (day(IniTime) != 1 & day(IniTime) != 16) {
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must start on the 1st or 16th day of a month.'),
+                 call. = FALSE)
+            
+        }
+        
+        FinTime <- int_end(int = lubriInterval)
+        monthFinTime <- month(FinTime)
+        dayFinTime <- day(FinTime)
+        if (monthFinTime == 1 && !dayFinTime %in% c(15, 31)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 31st day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 2 && leap_year(FinTime) && !dayFinTime %in% c(15, 29)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 29th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 2 && !leap_year(FinTime) && !dayFinTime %in% c(15, 28)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 29th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 3 && !dayFinTime %in% c(15, 31)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 31st day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 4 && !dayFinTime %in% c(15, 30)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 5 && !dayFinTime %in% c(15, 31)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 6 && !dayFinTime %in% c(15, 30)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 7 && !dayFinTime %in% c(15, 31)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 8 && !dayFinTime %in% c(15, 31)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 9 && !dayFinTime %in% c(15, 30)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 10 && !dayFinTime %in% c(15, 31)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 11 && !dayFinTime %in% c(15, 30)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
+        if (monthFinTime == 12 && !dayFinTime %in% c(15, 31)){
+            
+            stop(paste0('[RepoTime::lubriToRepoTime] ', 
+                        lubriInterval, 
+                        ': This input time interval must end on the 15th or 30th day of a month.'),
+                 call. = FALSE)
+        }
         NDays <- lubriInterval %/% days(x = 1)
 
-        if (NDays <= 17) {
+        if (NDays <= 15) {
 
             PP <- ifelse(test = Rot, yes = 'QR', no ='QQ')
             MonthDay <- mday(x = IniTime)
@@ -62,7 +169,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
 
         }
 
-        if (NDays > 17 & NDays <= 31){
+        if (NDays > 15 & NDays <= 31){
 
             PP <- ifelse(test = Rot, yes = 'MR', no = 'MM')
             Month <- month(IniTime)
@@ -117,7 +224,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
 
         }
 
-        if (NDays > 186){
+        if (NDays > 186 & NDays <= 365){
 
             PP <- ifelse(test = Rot, yes = 'AR', no = 'AA')
             Year <- year(x = IniTime)
@@ -125,8 +232,11 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
             return(value = RepoTime)
 
         }
-        cat('[RepoTime::lubriToRepoTime] Time interval not valid.\n\n')
-        return(value = invisible(NULL))
+        
+        stop(paste0('[RepoTime::lubriToRepoTime] ', 
+             lubriInterval, 
+             ': Time interval not valid.\n\n'),
+             call. = FALSE)
 
     } else {
 

@@ -75,9 +75,8 @@ setMethod(
 
     }
 
-    stop('[RepoTimeInt::Intersect] Arguments of Intersect must be either (i) an
-          object of class RepoTimeInt or (ii) two objects of class RepoTimeInt 
-          and length 1.')
+    stop('[RepoTimeInt::Intersect] Arguments of Intersect must be either (i) an object of class RepoTimeInt or (ii) two objects of class RepoTimeInt and length 1.',
+         call. = FALSE)
   }
 
 )

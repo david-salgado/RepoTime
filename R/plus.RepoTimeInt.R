@@ -42,7 +42,7 @@ setMethod(
 
         if (substr(x = St_Repo[i], start = 1, stop = 2) == 'QQ'){
 
-          FortNight <- ifelse(test = day(x = ThisInstant) > 14, 
+          FortNight <- ifelse(test = day(x = ThisInstant) > 15, 
                               yes = '2', 
                               no = '1')
           if (day(x = ThisInstant) < 29) {

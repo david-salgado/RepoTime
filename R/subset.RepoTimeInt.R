@@ -15,6 +15,7 @@
 #' @examples
 #' Ejemplo <- newRepoTime(paste0('MM', c('03', '04'), '2014'))
 #' Ejemplo[1]
+#' Ejemplo['MM032014']
 #' 
 #' @include RepoTimeInt-class.R newRepoTime.R
 #' 
