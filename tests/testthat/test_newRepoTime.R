@@ -25,19 +25,28 @@ test_that("newRepoTime reports error when input repo time interval beginning wit
 })
 
 test_that("newRepoTime reports error when input repo time interval beginning with SS or SR does have valid syntax", {
-    
+    expect_that(newRepoTime('SS1'), throws_error())
+    expect_that(newRepoTime('SS01'), throws_error())
+    expect_that(newRepoTime('SR192'), throws_error())
 })
 
 test_that("newRepoTime reports error when input repo time interval beginning with TT or TR does have valid syntax", {
-    
+    expect_that(newRepoTime('TT3'), throws_error())
+    expect_that(newRepoTime('TT03'), throws_error())
+    expect_that(newRepoTime('TR392'), throws_error())
 })
 
 test_that("newRepoTime reports error when input repo time interval beginning with MM or MR does have valid syntax", {
-    
+    expect_that(newRepoTime('MM1'), throws_error())
+    expect_that(newRepoTime('MM01'), throws_error())
+    expect_that(newRepoTime('MR192'), throws_error())
 })
 
 test_that("newRepoTime reports error when input repo time interval beginning with QQ or QR does have valid syntax", {
-    
+    expect_that(newRepoTime('QQ1'), throws_error())
+    expect_that(newRepoTime('QQ01'), throws_error())
+    expect_that(newRepoTime('QR101'), throws_error())
+    expect_that(newRepoTime('QR10114'), throws_error())
 })
 
 test_that("newRepoTime reports error when input repo time interval is too long", {
