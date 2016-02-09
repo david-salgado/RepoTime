@@ -33,8 +33,8 @@ setMethod(
     signature = c("RepoTimeInt"),
     definition = function(x){
         
-        output <- length(x = getRepo(object = x))
-        return(value = output)
+        output <- length(getRepo(object = x))
+        return(output)
     }
     
 )
