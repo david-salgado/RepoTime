@@ -1,6 +1,6 @@
 #' @title Show an object of class \linkS4class{RepoTimeInt}
 #' 
-#' @description \code{show} displays only the slot \code{Repo} of its argument 
+#' @description \code{show} displays only the slot \code{Repo} of its input argument 
 #' of class \linkS4class{RepoTimeInt}.
 #' 
 #' @param object Object of class \linkS4class{RepoTimeInt}.
