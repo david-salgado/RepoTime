@@ -2,7 +2,7 @@ Package: RepoTime
 Title: Implementation of a notation for time intervals
 Version: 0.1.0
 Author: David Salgado
-Maintainer: David Salgado <david.salgado.fernandez@ine.es>
+Maintainer: David Salgado <david.salgado.fernandez@gmail.com>
 Description: This package implements the so-called repo notation for time
     intervals.
 Depends:
@@ -17,9 +17,9 @@ Collate:
     'DocPackage.R'
     'RepoTimeTolubri.R'
     'RepoTimeInt-class.R'
+    'getlubriInt.R'
     'newRepoTime.R'
     'lubriToRepoTime.R'
-    'getlubriInt.R'
     'Intersect.RepoTimeInt.R'
     'getRepo.R'
     'Length.R'
