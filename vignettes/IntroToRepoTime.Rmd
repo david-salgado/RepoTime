@@ -71,9 +71,10 @@ The general idea of the package is to express time intervals with the agreed not
 
 To build an object of class `RepoTimeInt` we have defined a constructor:
 
-```{r}
+```{r, echo = TRUE}
 library(RepoTime)
 Months2015 <- newRepoTime(paste0('MM', c(paste0('0', 1:9), 10:12), '2015'))
+str(Months2015)
 ```
 
 Internally this constructor makes use of the function `RepoTimeTolubri`:
