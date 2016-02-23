@@ -1,8 +1,10 @@
 Package: RepoTime
 Title: Implementation of a notation for time intervals
-Version: 0.1.0
-Author: David Salgado
-Maintainer: David Salgado <david.salgado.fernandez@gmail.com>
+Version: 0.1.0.9000
+Authors@R: c(
+    person("Salgado", "David", email = "david.salgado.fernandez@gmail.com", role = "cre"),
+    person("Esteban", "Elisa", email = "elisa.esteban.coronado@gmail.com", role = "aut"),
+    person("Saldaña", "Soledad", email = "soledad.saldana.diaz@gmail.com", role = "aut"))
 Description: This package implements the so-called repo notation for time
     intervals.
 Depends:
