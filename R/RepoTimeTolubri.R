@@ -45,6 +45,8 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
     }
     if (length(x = RepoTime) == 1) {
         
+        if (is.na(RepoTime)) return(interval(NA, NA))
+        
         if (nchar(x = RepoTime) < 6) {
             
             stop(paste0('[RepoTime::RepoTimeTolubri] ', 
