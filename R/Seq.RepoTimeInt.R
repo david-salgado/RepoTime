@@ -186,7 +186,11 @@ setMethod(
                                            x = Rot))
             ini.index <- Break + 1
         }
-        output <- newoutput
+        
+        if(length(newoutput) > 0){
+            output <- newoutput
+        }
+        
     } 
     
     output <- newRepoTime(output)
