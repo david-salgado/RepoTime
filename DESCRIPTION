@@ -1,6 +1,6 @@
 Package: RepoTime
 Title: Implementation of a notation for time intervals
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person("Salgado", "David", email = "david.salgado.fernandez@gmail.com", role = "cre"),
     person("Esteban", "Elisa", email = "elisa.esteban.segurado@gmail.com", role = "aut"),
