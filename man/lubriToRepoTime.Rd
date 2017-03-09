@@ -32,4 +32,3 @@ lubriToRepoTime(interval('2015-01-01', '2015-03-31', tz = 'Europe/Madrid'))
 \seealso{
 \code{\link{RepoTimeTolubri}}
 }
-

@@ -38,4 +38,3 @@ RepoPeriod2 <- newRepoTime('MM022016')
 Seq(RepoPeriod1, RepoPeriod2)
  
 }
-

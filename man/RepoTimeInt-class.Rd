@@ -53,6 +53,7 @@ notation.}
 \item{\code{lubriInt}}{List of objects of \linkS4class{Interval} class of the 
 \link[lubridate]{lubridate-package}.}
 }}
+
 \examples{
 # Empty object
 x <- new(Class = 'RepoTimeInt')
@@ -70,4 +71,3 @@ str(x)
 \seealso{
 \code{\link{RepoTimeTolubri}}, \code{\link{lubriToRepoTime}}
 }
-

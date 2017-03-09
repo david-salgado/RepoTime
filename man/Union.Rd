@@ -43,4 +43,3 @@ Months <- newRepoTime(paste0('MM', 10:12, '2014'))
 Union(Months)
 
 }
-

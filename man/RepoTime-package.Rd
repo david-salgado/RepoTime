@@ -13,4 +13,3 @@ so-called repo notation for this package (see \code{\link{RepoTimeInt-class}}
  
 The package provides also usual methods for operating on these objects.
 }
-

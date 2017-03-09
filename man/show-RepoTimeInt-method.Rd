@@ -25,4 +25,3 @@ It is indeed the method \code{\link[methods]{show}} adapted to class
 show(newRepoTime('TT12015'))
 
 }
-

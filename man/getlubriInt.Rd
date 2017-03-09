@@ -28,4 +28,3 @@ getlubriInt(newRepoTime('TT12015'))
 \seealso{
 \code{\linkS4class{RepoTimeInt}}, \code{\link{getRepo}}
 }
-

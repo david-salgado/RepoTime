@@ -40,4 +40,3 @@ RepoPeriod2 <- newRepoTime('AA2015')
 Intersect(RepoPeriod1, RepoPeriod2)
 
 }
-
