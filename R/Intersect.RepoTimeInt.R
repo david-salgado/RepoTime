@@ -14,7 +14,7 @@
 #' @return Object of class \linkS4class{RepoTimeInt} resulting from intersecting
 #' the slot(s) \code{lubriInt} of the argument(s).
 #' 
-#' @details If argument \code{y} is missing, \code{intersect} is applied 
+#' @details If argument \code{y} is missing, \code{Intersect} is applied 
 #' iteratively on every successive component of the list of 
 #' \code{\link[lubridate]{Interval-class}} objects. If argument \code{y} is 
 #' not missing, the length of both arguments must be 1. 

@@ -7,7 +7,8 @@
 #' 
 #' @param RepoTime Character vector with time periods in repo notation.
 #'
-#' @return A character vector with the order of the time periods in the input parameter.
+#' @return An integer vector with the same length as the input parameter RepoTime with the order of 
+#' the time periods in the input parameter.
 #'  
 #' @examples
 #' orderRepoTime(paste0('MM', c('04','06', '01'), '2016'))

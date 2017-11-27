@@ -13,7 +13,7 @@
 #' @param e2 Object of class \linkS4class{Period}.
 #'
 #' @return Object of class \linkS4class{RepoTimeInt} resulting from summing the
-#' time period \code{y} to the initial time interval \code{x}.
+#' time period \code{e2} to the initial time interval \code{e1}.
 #'
 #' @examples
 #' library(lubridate)
