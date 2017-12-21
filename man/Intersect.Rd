@@ -25,7 +25,7 @@ of class \linkS4class{RepoTimeInt} and length 1 or of all elements of an
 object of class \linkS4class{RepoTimeInt} and length greater than 1.
 }
 \details{
-If argument \code{y} is missing, \code{intersect} is applied 
+If argument \code{y} is missing, \code{Intersect} is applied 
 iteratively on every successive component of the list of 
 \code{\link[lubridate]{Interval-class}} objects. If argument \code{y} is 
 not missing, the length of both arguments must be 1.

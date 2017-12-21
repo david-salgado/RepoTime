@@ -10,7 +10,8 @@ orderRepoTime(RepoTime)
 \item{RepoTime}{Character vector with time periods in repo notation.}
 }
 \value{
-A character vector with the order of the time periods in the input parameter.
+An integer vector with the same length as the input parameter RepoTime with the order of 
+the time periods in the input parameter.
 }
 \description{
 \code{orderRepoTime} returns a character vector with the order of the time periods 
