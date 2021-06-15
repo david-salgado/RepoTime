@@ -28,7 +28,7 @@ class \linkS4class{RepoTimeInt}.
 \examples{
 RepoPeriod <- newRepoTime('MM022015')
 RepoPeriod + months(1)
-RepoPeriod + years(1)
-RepoPeriod + weeks(2)
+RepoPeriod + lubridate::years(1)
+RepoPeriod + lubridate::weeks(2)
 
 }

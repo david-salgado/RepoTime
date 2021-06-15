@@ -18,14 +18,12 @@
 #' Length(RepoPeriod2)
 #' 
 #'  
-#' @include RepoTimeInt-class.R getRepo.R
+#' @include RepoTimeInt-class.R
 #' 
 #' @export
 setGeneric("Length", function(x){standardGeneric("Length")})
 
 #' @rdname Length
-#' 
-#' @include RepoTimeInt-class.R getRepo.R
 #' 
 #' @export
 setMethod(

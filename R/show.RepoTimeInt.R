@@ -13,7 +13,9 @@
 #' @examples
 #' show(newRepoTime('TT12015'))
 #' 
-#' @include RepoTimeInt-class.R getRepo.R
+#' @include RepoTimeInt-class.R
+#' 
+#' @importFrom methods show
 #' 
 #' @export
 setMethod(

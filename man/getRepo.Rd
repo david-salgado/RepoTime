@@ -22,6 +22,7 @@ class \linkS4class{RepoTimeInt}.
 \examples{
 getRepo(newRepoTime('TT12015'))
 
+
 }
 \seealso{
 \code{\link{RepoTimeInt-class}}, \code{\link{getlubriInt}}

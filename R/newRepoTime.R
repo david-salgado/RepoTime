@@ -24,6 +24,8 @@
 #'
 #' @include RepoTimeInt-class.R RepoTimeTolubri.R
 #' 
+#' @importFrom methods new
+#' 
 #' @export
 newRepoTime <- function(Time){
     

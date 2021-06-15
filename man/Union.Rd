@@ -21,7 +21,7 @@ Object of class \linkS4class{RepoTimeInt}.
 \code{Union} takes two objects of class 
 \linkS4class{RepoTimeInt} and produces a new object of this class with the 
 slot \code{lubriInt} resulting from applying the set operation 
-\link[base]{union} to their corresponding slots \code{lubriInt}.
+\code{union} to their corresponding slots \code{lubriInt}.
 }
 \details{
 If argument \code{y} is missing, \code{union} is applied iteratively

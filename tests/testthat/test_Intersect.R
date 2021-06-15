@@ -13,7 +13,8 @@ test_that("Intersect returns the correct RepoTimeInt class object", {
         is_identical_to(newRepoTime('TT12015')))
     expect_that(
         Intersect(newRepoTime(c('TT12015', 'TT22015'))), 
-        is_identical_to(interval(start = NA, end = NA, tzone = 'Europe/Madrid')))
+        is_identical_to(lubridate::interval(start = NA, end = NA, 
+                                            tzone = 'Europe/Madrid')))
     
 })
 

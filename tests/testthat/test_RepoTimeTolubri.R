@@ -76,37 +76,37 @@ test_that("RepoTimeTolubri reports error when input repo time interval is a long
 test_that("RepoTimeTolubri makes the correct transformations", {
     expect_that(RepoTimeTolubri('QQ1012016'), 
                 is_identical_to(list(QQ1012016 = 
-                                         interval(start = '2016-01-01',
+                                       lubridate::interval(start = '2016-01-01',
                                                   end = '2016-01-15',
                                                   tzone = 'Europe/Madrid'))))
     expect_that(RepoTimeTolubri('QQ2022015'), 
                 is_identical_to(list(QQ2022015 = 
-                                         interval(start = '2015-02-16',
+                                       lubridate::interval(start = '2015-02-16',
                                                   end = '2015-02-28',
                                                   tzone = 'Europe/Madrid'))))
     expect_that(RepoTimeTolubri('MM022016'), 
                 is_identical_to(list(MM022016 = 
-                                         interval(start = '2016-02-01',
+                                       lubridate::interval(start = '2016-02-01',
                                          end = '2016-02-29',
                                          tzone = 'Europe/Madrid'))))
     expect_that(RepoTimeTolubri('BB52014'), 
                 is_identical_to(list(BB52014 = 
-                                         interval(start = '2014-09-01',
+                                       lubridate::interval(start = '2014-09-01',
                                                   end = '2014-10-31',
                                                   tzone = 'Europe/Madrid'))))
     expect_that(RepoTimeTolubri('TT22013'), 
                 is_identical_to(list(TT22013 = 
-                                         interval(start = '2013-04-01',
+                                       lubridate::interval(start = '2013-04-01',
                                                   end = '2013-06-30',
                                                   tzone = 'Europe/Madrid'))))
     expect_that(RepoTimeTolubri('SS12011'), 
                 is_identical_to(list(SS12011 = 
-                                         interval(start = '2011-01-01',
+                                       lubridate::interval(start = '2011-01-01',
                                                   end = '2011-06-30',
                                                   tzone = 'Europe/Madrid'))))
     expect_that(RepoTimeTolubri('AA2009'), 
                 is_identical_to(list(AA2009 = 
-                                         interval(start = '2009-01-01',
+                                       lubridate::interval(start = '2009-01-01',
                                                   end = '2009-12-31',
                                                   tzone = 'Europe/Madrid'))))
     

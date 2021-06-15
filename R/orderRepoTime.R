@@ -20,8 +20,10 @@
 #' @import data.table
 #' 
 #' @export
-orderRepoTime <- function(RepoTime)
-{
+orderRepoTime <- function(RepoTime){
+    
+    FinalOrder <- NULL
+    
     Prefix <- unique(substr(RepoTime, 1, 1))
     if (length(Prefix) != 1)
         stop()
