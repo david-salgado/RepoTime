@@ -60,8 +60,6 @@
 #' @seealso \code{\link{RepoTimeTolubri}}, \code{\link{lubriToRepoTime}}
 #'
 #' @include RepoTimeTolubri.R
-#'
-#' @importFrom lubridate tz
 #' 
 #' @export
 setClass(Class = "RepoTimeInt",
@@ -75,7 +73,7 @@ setClass(Class = "RepoTimeInt",
                 stop('[RepoTime::validity RepoTimeInt] The slot lubriInt must be
                      a list of objects of class lubridate::Interval.')
             RepoTolubri <- RepoTimeTolubri(RepoTime = object@Repo,
-                                           TimeZone = tz(
+                                           TimeZone = lubridate::tz(
                                                x = object@lubriInt[[1]]@start))
             if (!identical(x = RepoTolubri, 
                            y = object@lubriInt))

@@ -30,7 +30,6 @@
 #'
 #' @include RepoTimeInt-class.R
 #'
-#'
 #' @export
 setGeneric("Intersect", function(x, y){standardGeneric("Intersect")})
 
@@ -38,7 +37,6 @@ setGeneric("Intersect", function(x, y){standardGeneric("Intersect")})
 #'
 #' @include RepoTimeInt-class.R lubriToRepoTime.R newRepoTime.R getlubriInt.R
 #'
-#' @importFrom lubridate intersect
 #'
 #' @export
 setMethod(
@@ -49,7 +47,7 @@ setMethod(
     if (missing(x = y) && length(x = x@Repo) == 1) return(value = x)
     if (missing(x = y) && length(x = x@Repo) >= 2) {
 
-      output <- Reduce(f = intersect, x = x@lubriInt)
+      output <- Reduce(f = lubridate::intersect, x = x@lubriInt)
       if(!is.na(x = output)){
         output <- unlist(x = lubriToRepoTime(lubriInterval = output))
         output <- newRepoTime(Time = output)
@@ -61,7 +59,7 @@ setMethod(
         length(x = x@Repo) == 1 && 
         length(x = y@Repo) == 1){
 
-      output <- intersect(x = getlubriInt(x)[[1]], y = getlubriInt(y)[[1]])
+      output <- lubridate::intersect(x = getlubriInt(x)[[1]], y = getlubriInt(y)[[1]])
       if (length(x = output) == 0) {
           output <- newRepoTime(Time = character(0))
           return(value = output)        

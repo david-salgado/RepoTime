@@ -25,16 +25,12 @@
 #' RepoTimeTolubri('MR122014')
 #' RepoTimeTolubri('TT20141')
 #' 
-#' @importFrom lubridate tz ymd years weeks days interval
-#' 
-#' @importFrom stringr str_pad
-#' 
 #' @export
 RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
     
     names(RepoTime) <- NULL
     Months <- c(paste0('0', 1:9), 10:12)
-    Years <- str_pad(1:9999, 4, 'left', '0')
+    Years <- stringr::str_pad(1:9999, 4, 'left', '0')
     
     if (length(x = RepoTime) == 0) {
         
@@ -81,11 +77,11 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
             }
             
             Year <- substr(x = RepoTime, start = 6, stop = 9)
-            if (as.integer(Year) < 1900 | as.integer(Year) > 2050){
+            if (as.integer(Year) < 1900 | as.integer(Year) > 2100){
                 
                 warning(paste0('[RepoTime::RepoTimeTolubri] ', 
                                RepoTime,
-                               ': Input year is before 1900 or after 2050. Check syntax QQqmmaaaa or QRqmmaaaa.\n'),
+                               ': Input year is before 1900 or after 2100. Check syntax QQqmmaaaa or QRqmmaaaa.\n'),
                         call. = FALSE)
                 
             }
@@ -99,21 +95,21 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
             if (FortNight == '1' ) {
                 St_Instant <- ymd(paste0(Year, '-', Month, '-01'), 
                                   tz = TimeZone)
-                End_Instant <- St_Instant + weeks(x = 2)
+                End_Instant <- St_Instant + lubridate::weeks(x = 2)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (FortNight == '2' ) {
-                St_Instant <- ymd(paste0(Year, '-', Month, '-16'), 
+                St_Instant <- lubridate::ymd(paste0(Year, '-', Month, '-16'), 
                                   tz = TimeZone)
-                St_Instant_Month <- ymd(paste0(Year, '-', Month, '-01'),
+                St_Instant_Month <- lubridate::ymd(paste0(Year, '-', Month, '-01'),
                                         tz = TimeZone)
 
                 End_Instant <- strftime(St_Instant_Month + 
-                                        months(1, abbreviate = FALSE) - 
-                                        days(1))
+                                        lubridate::month(1, abbr = FALSE) - 
+                                        lubridate::days(1))
 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             output <- list(lubriInterval)
             names(x = output) <- RepoTime
@@ -154,10 +150,10 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
                             ': Time interval not valid. Chech syntax MMmmaaaa or MRmmaaaa.\n'), 
                      call. = FALSE)
             }
-            St_Instant <- ymd(paste0(Year, '-', Month, '-01'), tz = TimeZone)
-            End_Instant <- St_Instant + months(1, abbreviate = FALSE) - days(1)
+            St_Instant <- lubridate::ymd(paste0(Year, '-', Month, '-01'), tz = TimeZone)
+            End_Instant <- St_Instant + lubridate::month(1, abbr = FALSE) - lubridate::days(1)
             
-            lubriInterval <- interval(St_Instant, End_Instant)
+            lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             output <- list(lubriInterval)
             names(x = output) <- RepoTime
             return(value = output)
@@ -197,52 +193,52 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
                      call. = FALSE)
             }
             if (BiMonth == '1' ) {
-                St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(2, abbreviate = FALSE)- 
-                               days(1)
+                               lubridate::month(2, abbr = FALSE)- 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (BiMonth == '2' ) {
-                St_Instant <- ymd(paste0(Year, '-', '03-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '03-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(2, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(2, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (BiMonth == '3' ) {
-                St_Instant <- ymd(paste0(Year, '-', '05-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '05-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(2, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(2, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (BiMonth == '4' ) {
-                St_Instant <- ymd(paste0(Year, '-', '07-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '07-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(2, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(2, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (BiMonth == '5' ) {
-                St_Instant <- ymd(paste0(Year, '-', '09-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '09-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(2, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(2, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (BiMonth == '6' ) {
-                St_Instant <- ymd(paste0(Year, '-', '11-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '11-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(x = 2, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(x = 2, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             output <- list(lubriInterval)
             names(x = output) <- RepoTime
@@ -283,36 +279,36 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
                      call. = FALSE)
             }
             if (Term == '1' ) {
-                St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(x = 3, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(x = 3, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (Term == '2' ) {
-                St_Instant <- ymd(paste0(Year, '-', '04-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '04-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(x = 3, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(x = 3, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (Term == '3' ) {
-                St_Instant <- ymd(paste0(Year, '-', '07-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '07-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(x = 3, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(x = 3, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (Term == '4' ) {
-                St_Instant <- ymd(paste0(Year, '-', '10-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '10-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(x = 3, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(x = 3, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             output <- list(lubriInterval)
             names(x = output) <- RepoTime
@@ -352,20 +348,20 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
                      call. = FALSE)
             }
             if (Sem == '1' ) {
-                St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(x = 6, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(x = 6, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             if (Sem == '2' ) {
-                St_Instant <- ymd(paste0(Year, '-', '07-01'), tz = TimeZone)
+                St_Instant <- lubridate::ymd(paste0(Year, '-', '07-01'), tz = TimeZone)
                 End_Instant <- St_Instant + 
-                               months(x = 6, abbreviate = FALSE) - 
-                               days(1)
+                               lubridate::month(x = 6, abbr = FALSE) - 
+                               lubridate::days(1)
                 
-                lubriInterval <- interval(St_Instant, End_Instant)
+                lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             }
             output <- list(lubriInterval)
             names(x = output) <- RepoTime
@@ -397,10 +393,10 @@ RepoTimeTolubri <- function(RepoTime, TimeZone = 'Europe/Madrid'){
                             ': Time interval not valid. Chech syntax AAaaaa or ARaaaa.\n'), 
                      call. = FALSE)
             }
-            St_Instant <- ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
-            End_Instant <- St_Instant + years(1) - days(1)
+            St_Instant <- lubridate::ymd(paste0(Year, '-', '01-01'), tz = TimeZone)
+            End_Instant <- St_Instant + lubridate::years(1) - lubridate::days(1)
             
-            lubriInterval <- interval(St_Instant, End_Instant)
+            lubriInterval <- lubridate::interval(St_Instant, End_Instant)
             output <- list(lubriInterval)
             names(x = output) <- RepoTime
             return(value = output)

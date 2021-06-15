@@ -1,7 +1,4 @@
-#' @name getlubriInt
-#' @aliases getlubriInt
-#' 
-#' @title Return the slot lubriInt
+#' @title Return the slot lubriInt.
 #' 
 #' @description \code{getlubriInt} returns the slot \code{lubriInt} of an object
 #'  of class \linkS4class{RepoTimeInt}.

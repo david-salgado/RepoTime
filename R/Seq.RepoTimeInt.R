@@ -29,8 +29,6 @@
 #'  
 #' @include RepoTimeInt-class.R
 #' 
-#' @importFrom lubridate duration as.interval
-#' 
 #' @export
 setGeneric("Seq", function(x, y, Rot = TRUE, RotPer = '12'){standardGeneric("Seq")})
 
@@ -86,7 +84,7 @@ setMethod(
     startinterval <- seq(from = getlubriInt(x)[[1]]@start, 
                          to = getlubriInt(y)[[1]]@start, 
                          by = byParam)  
-    Months <- month(startinterval)
+    Months <- lubridate::month(startinterval)
     BiMonths <- unlist(lapply(as.list(Months), 
                               function(m){
                                   if (m %in% c(1, 2)) return(1)
@@ -110,7 +108,7 @@ setMethod(
                            }))
     
     Months <- ifelse(nchar(Months) == 1, paste0('0', Months), Months)
-    Years <- year(startinterval)
+    Years <- lubridate::year(startinterval)
 
     if (substr(x = x@Repo, start = 1, stop = 1) == 'M'){
         
