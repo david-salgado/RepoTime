@@ -24,9 +24,8 @@ The repo notation of time intervals is explained in the details
 section of \code{\link{RepoTimeInt-class}}.
 }
 \examples{
-library(lubridate)
-lubriToRepoTime(interval('2015-04-01', '2015-04-30', tz = 'Europe/Madrid'))
-lubriToRepoTime(interval('2015-01-01', '2015-03-31', tz = 'Europe/Madrid'))
+lubriToRepoTime(lubridate::interval('2015-04-01', '2015-04-30', tz = 'Europe/Madrid'))
+lubriToRepoTime(lubridate::interval('2015-01-01', '2015-03-31', tz = 'Europe/Madrid'))
 
 }
 \seealso{

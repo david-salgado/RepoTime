@@ -18,15 +18,12 @@
 #' section of \code{\link{RepoTimeInt-class}}.
 #'
 #' @examples
-#' library(lubridate)
-#' lubriToRepoTime(interval('2015-04-01', '2015-04-30', tz = 'Europe/Madrid'))
-#' lubriToRepoTime(interval('2015-01-01', '2015-03-31', tz = 'Europe/Madrid'))
+#' lubriToRepoTime(lubridate::interval('2015-04-01', '2015-04-30', tz = 'Europe/Madrid'))
+#' lubriToRepoTime(lubridate::interval('2015-01-01', '2015-03-31', tz = 'Europe/Madrid'))
 #'
 #' @include RepoTimeTolubri.R
 #'
 #' @seealso \code{\link{RepoTimeTolubri}}
-#'
-#' @importFrom lubridate int_start int_end days mday month year leap_year
 #'
 #' @export
 lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
@@ -41,8 +38,8 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
                  call. = FALSE)
         
         }
-        IniTime <- int_start(int = lubriInterval)
-        if (day(IniTime) != 1 & day(IniTime) != 16) {
+        IniTime <- lubridate::int_start(int = lubriInterval)
+        if (lubridate::day(IniTime) != 1 & lubridate::day(IniTime) != 16) {
             
             stop(paste0('[RepoTime::lubriToRepoTime] ', 
                         lubriInterval, 
@@ -51,9 +48,9 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
             
         }
         
-        FinTime <- int_end(int = lubriInterval)
-        monthFinTime <- month(FinTime)
-        dayFinTime <- day(FinTime)
+        FinTime <- lubridate::int_end(int = lubriInterval)
+        monthFinTime <- lubridate::month(FinTime)
+        dayFinTime <- lubridate::day(FinTime)
         if (monthFinTime == 1 && !dayFinTime %in% c(15, 31)){
             
             stop(paste0('[RepoTime::lubriToRepoTime] ', 
@@ -61,14 +58,14 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
                         ': This input time interval must end on the 15th or 31st day of a month.'),
                  call. = FALSE)
         }
-        if (monthFinTime == 2 && leap_year(FinTime) && !dayFinTime %in% c(15, 29)){
+        if (monthFinTime == 2 && lubridate::leap_year(FinTime) && !dayFinTime %in% c(15, 29)){
             
             stop(paste0('[RepoTime::lubriToRepoTime] ', 
                         lubriInterval, 
                         ': This input time interval must end on the 15th or 29th day of a month.'),
                  call. = FALSE)
         }
-        if (monthFinTime == 2 && !leap_year(FinTime) && !dayFinTime %in% c(15, 28)){
+        if (monthFinTime == 2 && !lubridate::leap_year(FinTime) && !dayFinTime %in% c(15, 28)){
             
             stop(paste0('[RepoTime::lubriToRepoTime] ', 
                         lubriInterval, 
@@ -145,12 +142,12 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
                         ': This input time interval must end on the 15th or 30th day of a month.'),
                  call. = FALSE)
         }
-        NDays <- lubriInterval %/% days(x = 1)
+        NDays <- lubriInterval %/% lubridate::days(x = 1)
 
         if (NDays <= 15) {
 
             PP <- ifelse(test = Rot, yes = 'QR', no ='QQ')
-            MonthDay <- mday(x = IniTime)
+            MonthDay <- lubridate::mday(x = IniTime)
             if (MonthDay <= 14) {
 
                 p <- 1
@@ -159,11 +156,11 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
 
                 p <- 2
             }
-            Month <- month(x = IniTime)
+            Month <- lubridate::month(x = IniTime)
             Month <- ifelse(test = nchar(Month) == 1, 
                             yes = paste0('0', Month), 
                             no = Month)
-            Year <- year(x = IniTime)
+            Year <- lubridate::year(x = IniTime)
             RepoTime <- paste0(PP, p, Month, Year)
             return(value = RepoTime)
 
@@ -172,11 +169,11 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 15 & NDays <= 31){
 
             PP <- ifelse(test = Rot, yes = 'MR', no = 'MM')
-            Month <- month(IniTime)
+            Month <- lubridate::month(IniTime)
             Month <- ifelse(test = (nchar(x = Month) == 1), 
                             yes = paste0('0', Month), 
                             no = Month)
-            Year <- year(x = IniTime)
+            Year <- lubridate::year(x = IniTime)
             RepoTime <- paste0(PP, Month, Year)
             return(value = RepoTime)
 
@@ -185,14 +182,14 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 31 & NDays <= 62){
 
             PP <- ifelse(test = Rot, yes = 'BR', no = 'BB')
-            Month <- month(x = IniTime)
+            Month <- lubridate::month(x = IniTime)
             if (Month %in% 1:2) BiM <- 1
             if (Month %in% 3:4) BiM <- 2
             if (Month %in% 5:6) BiM <- 3
             if (Month %in% 7:8) BiM <- 4
             if (Month %in% 9:10) BiM <- 5
             if (Month %in% 11:12) BiM <- 6
-            Year <- year(x = IniTime)
+            Year <- lubridate::year(x = IniTime)
             RepoTime <- paste0(PP, BiM, Year)
             return(value = RepoTime)
 
@@ -201,12 +198,12 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 62 & NDays <= 93){
 
             PP <- ifelse(test = Rot, yes = 'TR', no = 'TT')
-            Month <- month(x = IniTime)
+            Month <- lubridate::month(x = IniTime)
             if (Month %in% 1:3) Term <- 1
             if (Month %in% 4:6) Term <- 2
             if (Month %in% 7:9) Term <- 3
             if (Month %in% 10:12) Term <- 4
-            Year <- year(x = IniTime)
+            Year <- lubridate::year(x = IniTime)
             RepoTime <- paste0(PP, Term, Year)
             return(value = RepoTime)
 
@@ -215,10 +212,10 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 93 & NDays <= 186){
 
             PP <- ifelse(test = Rot, yes = 'SR', no = 'SS')
-            Month <- month(x = IniTime)
+            Month <- lubridate::month(x = IniTime)
             if (Month %in% 1:6) Sem <- 1
             if (Month %in% 7:12) Sem <- 2
-            Year <- year(x = IniTime)
+            Year <- lubridate::year(x = IniTime)
             RepoTime <- paste0(PP, Sem, Year)
             return(value = RepoTime)
 
@@ -227,7 +224,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 186 & NDays <= 365){
 
             PP <- ifelse(test = Rot, yes = 'AR', no = 'AA')
-            Year <- year(x = IniTime)
+            Year <- lubridate::year(x = IniTime)
             RepoTime <- paste0(PP, Year)
             return(value = RepoTime)
 

@@ -23,8 +23,6 @@
 #'
 #' @include RepoTimeInt-class.R getlubriInt.R getRepo.R
 #'
-#' @importFrom lubridate add_with_rollback int_start floor_date ceiling_date
-#'
 #' @export
 setMethod(
     f = "+",
