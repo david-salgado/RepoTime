@@ -54,42 +54,42 @@ setMethod(
             ThisInstant <- lubridate::ceiling_date(x = ThisInstant, unit = 'month')
           
           }
-          Month <- lubridate::month(x = ThisInstant)
+          Month <- months(x = ThisInstant)
           if (nchar(x = Month) == 1) Month <- paste0('0', Month)
           Year <- lubridate::year(x = ThisInstant)
           output <- paste0('QQ', FortNight, Month, Year)
         }
         if (substr(x = St_Repo[i], start = 1, stop = 2) == 'BB'){
 
-          if (lubridate::month(x = ThisInstant) %in% c(1, 2))   BiMonth <- 1
-          if (lubridate::month(x = ThisInstant) %in% c(3, 4))   BiMonth <- 2
-          if (lubridate::month(x = ThisInstant) %in% c(5, 6))   BiMonth <- 3
-          if (lubridate::month(x = ThisInstant) %in% c(7, 8))   BiMonth <- 4
-          if (lubridate::month(x = ThisInstant) %in% c(9, 10))  BiMonth <- 5
-          if (lubridate::month(x = ThisInstant) %in% c(11, 12)) BiMonth <- 6
+          if (months(x = ThisInstant) %in% c(1, 2))   BiMonth <- 1
+          if (months(x = ThisInstant) %in% c(3, 4))   BiMonth <- 2
+          if (months(x = ThisInstant) %in% c(5, 6))   BiMonth <- 3
+          if (months(x = ThisInstant) %in% c(7, 8))   BiMonth <- 4
+          if (months(x = ThisInstant) %in% c(9, 10))  BiMonth <- 5
+          if (months(x = ThisInstant) %in% c(11, 12)) BiMonth <- 6
           Year <- lubridate::year(x = ThisInstant)
           output <- paste0('BB', BiMonth, Year)
         }
         if (substr(x = St_Repo[i], start = 1, stop = 2) == 'MM'){
 
-          Month <- lubridate::month(x = ThisInstant)
+          Month <- months(x = ThisInstant)
           if (nchar(x = Month) == 1) Month <- paste0('0', Month)
           Year <- lubridate::year(x = ThisInstant)
           output <- paste0('MM', Month, Year)
         }
         if (substr(x = St_Repo[i], start = 1, stop = 2) == 'TT'){
 
-          if (lubridate::month(x = ThisInstant) %in% c(1, 2, 3))    Term <- 1
-          if (lubridate::month(x = ThisInstant) %in% c(4, 5, 6))    Term <- 2
-          if (lubridate::month(x = ThisInstant) %in% c(7, 8, 9))    Term <- 3
-          if (lubridate::month(x = ThisInstant) %in% c(10, 11, 12)) Term <- 4
+          if (months(x = ThisInstant) %in% c(1, 2, 3))    Term <- 1
+          if (months(x = ThisInstant) %in% c(4, 5, 6))    Term <- 2
+          if (months(x = ThisInstant) %in% c(7, 8, 9))    Term <- 3
+          if (months(x = ThisInstant) %in% c(10, 11, 12)) Term <- 4
           Year <- lubridate::year(x = ThisInstant)
           output <- paste0('TT', Term, Year)
         }
         if (substr(x = St_Repo[i], start = 1, stop = 2) == 'SS'){
 
-          if (lubridate::month(x = ThisInstant) %in% 1:6)  Sem <- 1
-          if (lubridate::month(x = ThisInstant) %in% 7:12) Sem <- 2
+          if (months(x = ThisInstant) %in% 1:6)  Sem <- 1
+          if (months(x = ThisInstant) %in% 7:12) Sem <- 2
           Year <- lubridate::year(x = ThisInstant)
           output <-paste0('SS', Sem, Year)
         }

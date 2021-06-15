@@ -49,7 +49,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         }
         
         FinTime <- lubridate::int_end(int = lubriInterval)
-        monthFinTime <- lubridate::month(FinTime)
+        monthFinTime <- month(FinTime)
         dayFinTime <- lubridate::day(FinTime)
         if (monthFinTime == 1 && !dayFinTime %in% c(15, 31)){
             
@@ -156,7 +156,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
 
                 p <- 2
             }
-            Month <- lubridate::month(x = IniTime)
+            Month <- month(x = IniTime)
             Month <- ifelse(test = nchar(Month) == 1, 
                             yes = paste0('0', Month), 
                             no = Month)
@@ -169,7 +169,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 15 & NDays <= 31){
 
             PP <- ifelse(test = Rot, yes = 'MR', no = 'MM')
-            Month <- lubridate::month(IniTime)
+            Month <- month(IniTime)
             Month <- ifelse(test = (nchar(x = Month) == 1), 
                             yes = paste0('0', Month), 
                             no = Month)
@@ -182,7 +182,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 31 & NDays <= 62){
 
             PP <- ifelse(test = Rot, yes = 'BR', no = 'BB')
-            Month <- lubridate::month(x = IniTime)
+            Month <- month(x = IniTime)
             if (Month %in% 1:2) BiM <- 1
             if (Month %in% 3:4) BiM <- 2
             if (Month %in% 5:6) BiM <- 3
@@ -198,7 +198,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 62 & NDays <= 93){
 
             PP <- ifelse(test = Rot, yes = 'TR', no = 'TT')
-            Month <- lubridate::month(x = IniTime)
+            Month <- month(x = IniTime)
             if (Month %in% 1:3) Term <- 1
             if (Month %in% 4:6) Term <- 2
             if (Month %in% 7:9) Term <- 3
@@ -212,7 +212,7 @@ lubriToRepoTime <- function(lubriInterval, Rot = FALSE){
         if (NDays > 93 & NDays <= 186){
 
             PP <- ifelse(test = Rot, yes = 'SR', no = 'SS')
-            Month <- lubridate::month(x = IniTime)
+            Month <- month(x = IniTime)
             if (Month %in% 1:6) Sem <- 1
             if (Month %in% 7:12) Sem <- 2
             Year <- lubridate::year(x = IniTime)

@@ -1,6 +1,3 @@
-#' @name Union
-#' @aliases Union
-#' 
 #' @title Union of two objects of class \linkS4class{RepoTimeInt}
 #'
 #' @description \code{Union} takes two objects of class 
@@ -22,6 +19,10 @@
 #' It is important to remind that \code{union} "fills in" the time gap between 
 #' their time interval arguments, if ever. It includes intervening time 
 #' intervals between the initial and final input time intervals.
+#' 
+#' @name Union
+#' @aliases Union
+#' 
 #'
 #' @examples
 #' RepoPeriod1 <- newRepoTime('TT12015')
@@ -39,8 +40,6 @@ setGeneric("Union", function(x, y){standardGeneric("Union")})
 #' @rdname Union
 #'
 #' @include RepoTimeInt-class.R lubriToRepoTime.R newRepoTime.R getlubriInt.R
-#'
-#' @importFrom lubridate union 
 #' 
 #' @export
 setMethod(
@@ -51,7 +50,7 @@ setMethod(
     if (missing(x = y) && length(x = x@Repo) == 1) return(value = x)
     if (missing(x = y) && length(x = x@Repo) >= 2) {
 
-      output <- Reduce(f = union, x = getlubriInt(object = x))
+      output <- Reduce(f = lubridate::union, x = getlubriInt(object = x))
       output <- unlist(x = lubriToRepoTime(lubriInterval = output))
 
       output <- newRepoTime(Time = output)
@@ -62,7 +61,7 @@ setMethod(
         length(x = x@Repo) == 1 && 
         length(x = y@Repo) == 1){
 
-      output <- union(x = x@lubriInt[[1]], y = y@lubriInt[[1]])
+      output <-  lubridate::union(x = x@lubriInt[[1]], y = y@lubriInt[[1]])
       output <- unlist(x = lubriToRepoTime(lubriInterval = output))
       output <- newRepoTime(Time = output)
       return(value = output)

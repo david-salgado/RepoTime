@@ -84,7 +84,7 @@ setMethod(
     startinterval <- seq(from = getlubriInt(x)[[1]]@start, 
                          to = getlubriInt(y)[[1]]@start, 
                          by = byParam)  
-    Months <- lubridate::month(startinterval)
+    Months <- months(startinterval)
     BiMonths <- unlist(lapply(as.list(Months), 
                               function(m){
                                   if (m %in% c(1, 2)) return(1)
